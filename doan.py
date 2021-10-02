@@ -14,7 +14,7 @@ class itemSkill(BaseModel):
     question: str
     answers : Optional[str] = None
 
-class UpdateitemSkill(BaseModel):
+class UpdateItemSkill(BaseModel):
     name :  Optional[str] = None
     description : Optional[str] = None
     question:  Optional[str] = None
@@ -37,7 +37,7 @@ class infoTests(BaseModel):
     task3: itemSkill
     task4: itemSkill
 
-class UpdateinfoTests(BaseModel):
+class UpdateInfoTests(BaseModel):
     task1: UpdateitemSkill
     task2: UpdateitemSkill
     task3: UpdateitemSkill
@@ -59,7 +59,7 @@ class UpdateTests(BaseModel):
 async def introduce():
     return introskill
 
-@app.get("/test")
+@app.get("/")
 async def home():
     i = 0
     keyTest  = {}
@@ -74,22 +74,23 @@ async def get_test_byID(idtest: str = Path(None ,description = "The ID of the Te
     return dbTest[idtest]
 
 @app.get("/test-by-level/")
-async def get_test_bylevel(level: int  = Query(None, description = "Level of Test")):
+async def get_test_by_level(level: int  = Query(None, description = "Level of Test")):
     for idtest in dbTest:
         if dbTest[idtest]["level"] == level:
             return dbTest[idtest]
     return {"Data": "NotFound"}
 
 @app.get("/itemskill-by-id/{idskill}")
-async def get_itemskill_byID(idskill: int = Path(None, description = "The ID of skill!")):
+async def get_itemskill_by_ID(idskill: int = Path(None, description = "The ID of skill!")):
     return dbSkill[idskill]
 
 @app.get("/itemskill-by-name/")
-async def get_itemskill_byName(name: str = Query(None, description = "Name of skill!")):
+async def get_itemskill_by_Name(name: str = Query(None, description = "Name of skill!")):
     for idskill in dbSkill:
         if dbSkill[idskill]["name"] == name:
             return dbSkill[idskill]
     return {"Data": "NotFound"}
+
 '''
 @app.get("/itemskill-by-question/")
 async def get_itemskill_byQuestion(ques: str = Query(None, description = "Question")):
