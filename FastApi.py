@@ -4,8 +4,6 @@ from fastapi.param_functions import Query
 from pydantic.fields import Field
 from pydantic.main import BaseModel
 
-
-
 app = FastAPI()
 
 class itemSkill(BaseModel):
