@@ -14,25 +14,26 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT} AS deve
 
 # [Optional] Uncomment if you want to install more global node packages
 # RUN su node -c "npm install -g <your-package-list -here>"
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install
 
 
 # Rebuild the source code only when needed
-FROM development AS builder
+FROM node:${VARIANT} AS builder
 WORKDIR /app
 COPY . .
-RUN yarn install \
-    && yarn compile \
-    #  Just install prod dependencies
-    && yarn install --prod
+COPY --from=development /app/node_modules ./node_modules
+RUN yarn build && yarn plugin import workspace-tools && yarn workspaces focus --production
 
 # Production image, copy all the files and run next
-FROM node:16.10.0-alpine3.14 AS runner
+FROM node:${VARIANT} AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+RUN addgroup --gid 1001 --system nodejs
+RUN adduser --system nextjs -u 1001
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 # COPY --from=builder /app/next.config.js ./

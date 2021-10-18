@@ -23,7 +23,8 @@
 		"eamodio.gitlens",
 		"donjayamanne.githistory",
 		"mhutchie.git-graph",
-		"gruntfuggly.todo-tree"
+		"gruntfuggly.todo-tree",
+		"esbenp.prettier-vscode",
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
