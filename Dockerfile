@@ -1,30 +1,18 @@
-# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.194.0/containers/typescript-node/.devcontainer/base.Dockerfile
-
-# [Choice] Node.js version: 16, 14, 12
-ARG VARIANT="16-buster"
-FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT} AS development
-
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
-
-# [Optional] Uncomment if you want to install an additional version of node using nvm
-# ARG EXTRA_NODE_VERSION=10
-# RUN su node -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION}"
-
-# [Optional] Uncomment if you want to install more global node packages
-# RUN su node -c "npm install -g <your-package-list -here>"
+ARG VARIANT="16.11.1-alpine3.14"
+# Install dependencies only when needed
+FROM node:${VARIANT} AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install
-
+RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:${VARIANT} AS builder
 WORKDIR /app
 COPY . .
-COPY --from=development /app/node_modules ./node_modules
-RUN yarn build && yarn plugin import workspace-tools && yarn workspaces focus --production
+COPY --from=deps /app/node_modules ./node_modules
+RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
 FROM node:${VARIANT} AS runner
@@ -32,8 +20,8 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
-RUN addgroup --gid 1001 --system nodejs
-RUN adduser --system nextjs -u 1001
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 # COPY --from=builder /app/next.config.js ./
