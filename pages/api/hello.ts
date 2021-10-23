@@ -5,9 +5,29 @@ type Data = {
   name: string
 }
 
+const datas = [{
+  passage: "",
+  question: "",
+  answer: {}
+}]
+
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  res.status(200).json({ name: 'John Doe' })
+  if(req.method === "GET")
+    res.status(200).json({ name: 'John Doe' })
+  else if(req.method === "POST"){
+    const passage = req.body.passage;
+    const question = req.body.question;
+    const answer = req.body.answer;
+    const newTest = {
+      passage: passage,
+      question: question,
+      answer: answer
+    }
+    datas.push(newTest)
+    console.log(datas);
+    res.status(201).json(newTest);
+  }
 }
