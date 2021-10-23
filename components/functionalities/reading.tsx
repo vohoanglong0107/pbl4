@@ -19,6 +19,10 @@ const Reading : NextPage = () => {
         answerD: ""
     })
 
+    const handleAnswer = () => {
+        setOutput("");
+    }
+
     const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
         const response = await fetch('api/hello', {
