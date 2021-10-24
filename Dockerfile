@@ -1,32 +1,21 @@
-# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.194.0/containers/typescript-node/.devcontainer/base.Dockerfile
-
-# [Choice] Node.js version: 16, 14, 12
-ARG VARIANT="16-buster"
-FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT} AS development
-
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
-
-# [Optional] Uncomment if you want to install an additional version of node using nvm
-# ARG EXTRA_NODE_VERSION=10
-# RUN su node -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION}"
-
-# [Optional] Uncomment if you want to install more global node packages
-# RUN su node -c "npm install -g <your-package-list -here>"
-
+ARG VARIANT="16.11.1-alpine3.14"
+# Install dependencies only when needed
+FROM node:${VARIANT} AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --production
 
 # Rebuild the source code only when needed
-FROM development AS builder
+FROM node:${VARIANT} AS builder
 WORKDIR /app
 COPY . .
-RUN yarn install \
-    && yarn compile \
-    #  Just install prod dependencies
-    && yarn install --prod
+COPY --from=deps /app/node_modules ./node_modules
+RUN yarn build
 
 # Production image, copy all the files and run next
-FROM node:16.10.0-alpine3.14 AS runner
+FROM node:${VARIANT} AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
@@ -40,6 +29,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/.env.local ./.env.local
 
 USER nextjs
 

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Ubuntu:wght@500&display=swap');
+.container {
+    height: 100vh;
+    margin-top: 0;
+}
+.top {
+    width: 20%;
+    margin: 2%;
+}
+.name {
+    font-size: 2rem;
+    font-family: 'Ubuntu', sans-serif;
+    color: #00A19D;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 10px;
+}

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Ubuntu:wght@500&display=swap');
+.myNav {
+    background-color: #00A19D;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+    height: 60px;
+}
+
+.myBrand {
+    color: bisque;
+    font-size: 2rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    margin-left: 15%;
+}
+
+.lists {
+    /* float: right; */
+    /* overflow: hidden; */
+    margin-left: 120px;
+    width: 100%;
+}
+
+/* .item {
+    display: inline-block;
+    text-decoration: none;
+    list-style-type: none;
+} */
+
+.link {
+    position: relative;
+    text-decoration: none;
+    color: beige;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    font-size: 0.75rem;
+    padding: 0 30px;
+}
+/* .link::after {
+    content: "";
+    position: absolute;
+    background-color: #FFC074;
+    height: 3px;
+    width: 0%;
+    left: 0;
+    bottom: -21px;
+    padding: 0 30px;
+    transition: 0.3s;
+} */
+
+.link:hover {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+/* .link:hover::after {
+    width: 100%;
+} */
