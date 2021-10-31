@@ -559,3 +559,5 @@ yarn-error.log*
 .yarn/cache/yallist-npm-4.0.0-b493d9e907-343617202a.zip
 .yarn/cache/yocto-queue-npm-0.1.0-c6c9a7db29-f77b3d8d00.zip
 .yarn/releases/yarn-berry.cjs
+.yarn/cache/axios-npm-0.23.0-2d08cb7826-879f61022b.zip
+.yarn/cache/follow-redirects-npm-1.14.4-19eb02e590-d4ce74cf5c.zip
