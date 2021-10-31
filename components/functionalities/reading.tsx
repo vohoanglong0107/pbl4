@@ -40,7 +40,6 @@ const Reading: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <NavigationBar />
       <form onSubmit={handleSubmit} method={"POST"} className={styles.content}>
         <div className={styles.passage}>
           <label className={styles.instruction}>Passage </label>
