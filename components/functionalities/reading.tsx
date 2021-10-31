@@ -18,7 +18,7 @@ const Reading: NextPage = () => {
     answerC: "",
     answerD: "",
   });
-
+  // const [ correctAns, setCorrectAns ]
   const handleAnswer = (trueAnswer: React.SetStateAction<string>): void => {
     setOutput(trueAnswer);
   };
@@ -37,6 +37,8 @@ const Reading: NextPage = () => {
     .then(response => handleAnswer(String.fromCharCode(response.output - 1 + 'A'.charCodeAt(0))))
     .catch(err => {console.log(err); handleAnswer(String(err))});
   };
+
+  // check if "answer"+state === "answer..." -> bg special : bg normal
 
   return (
     <div className={styles.container}>
@@ -61,8 +63,9 @@ const Reading: NextPage = () => {
             name="passage"
             value={passage}
             onChange={(e) => setPassage(e.target.value)}
-            className={styles.passageContent}
-          ></textarea>
+            className= {styles.passageContent}
+          >
+          </textarea>
         </div>
         {/* onChange= {e => setDetails({...details, username: e.target.value})} */}
         <div className={styles.questionContainer}>
@@ -88,7 +91,7 @@ const Reading: NextPage = () => {
             <p>
               A{" "}
               <input
-                className={styles.answerInput}
+                className={"answer" + output !== "answerA"?  styles.answerInput : styles.correctAnswer}
                 value={answer.answerA}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerA: e.target.value })
@@ -100,7 +103,7 @@ const Reading: NextPage = () => {
             <p>
               B{" "}
               <input
-                className={styles.answerInput}
+                className={"answer" + output !== "answerB"? styles.answerInput : styles.correctAnswer}
                 value={answer.answerB}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerB: e.target.value })
@@ -112,7 +115,7 @@ const Reading: NextPage = () => {
             <p>
               C{" "}
               <input
-                className={styles.answerInput}
+                className={"answer" + output !== "answerC"? styles.answerInput : styles.correctAnswer}
                 value={answer.answerC}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerC: e.target.value })
@@ -124,7 +127,7 @@ const Reading: NextPage = () => {
             <p>
               D{" "}
               <input
-                className={styles.answerInput}
+                className={"answer" + output !== "answerD"? styles.answerInput : styles.correctAnswer}
                 value={answer.answerD}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerD: e.target.value })
@@ -135,7 +138,7 @@ const Reading: NextPage = () => {
             </p>
           </div>
           {/* TODO show ket qua */}
-          <p className={styles.ans}>Answer: {output}</p>
+          {/* <p className={styles.ans}>Answer: {output}</p> */}
           <input type="submit" className={styles.solveBtn} value="Solve!" />
         </div>
       </form>
