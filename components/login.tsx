@@ -13,13 +13,16 @@ const Login : NextPage = () => {
                 <a href="#" className={styles.name}>Lorem</a>
             </div>
             <Container>
-                <Row>
+                <Row className={styles.row}>
                     <Col>
-                        <p>Slogan</p> 
-                        <Image src="/logo.png" alt="illustrate-image" width="60%" height="60%"/>
+                        <p className={styles.slogan}>Lorem ipsum dolor sit amet consectous</p>
+                        <Image className={styles.image} src="/background-image.png" alt="illustrate-image" width="400%" height="400%"/>
                     </Col>
                     <Col>
-                        <p>Login form</p>
+                        <div className={styles.loginContainer}>
+                            <p className={styles.loginTitle}>Login</p>
+                            
+                        </div>
                     </Col>
                 </Row>
             </Container>

@@ -3,7 +3,6 @@
     background-color: #00A19D;
     display: flex;
     align-items: center;
-    justify-content: space-around;
     margin: auto;
     height: 60px;
 }
@@ -13,14 +12,14 @@
     font-size: 2rem;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
-    margin-left: 15%;
+    position: absolute;
+    top: 0.5%;
+    left: 15%;
 }
 
 .lists {
-    /* float: right; */
-    /* overflow: hidden; */
-    margin-left: 120px;
-    width: 100%;
+    display: flex;
+    margin-left: 30%;
 }
 
 /* .item {

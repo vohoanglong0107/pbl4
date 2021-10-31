@@ -48,10 +48,6 @@ const Reading : NextPage = () => {
     //     })
     //   .catch(error => console.error(error));
     // }
-
-    const handleChange = () => {
-
-    }
     return (
         <div className={styles.container}>
             <NavigationBar />
