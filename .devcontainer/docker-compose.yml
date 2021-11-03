@@ -4,7 +4,8 @@ services:
   app:
     build:
       context: ..
-      dockerfile: .devcontainer/Dockerfile
+      dockerfile: .devcontainer/Dockerfile.dev
+      target: development
       args:
         # [Choice] Python version: 3, 3.8, 3.7, 3.6
         VARIANT: 3.8
@@ -16,6 +17,7 @@ services:
 
     volumes:
       - ..:/workspace:cached
+      - vscode-extensions:/root/.vscode-server/extensions
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -44,3 +46,4 @@ services:
 
 volumes:
   postgres-data:
+  vscode-extensions:
