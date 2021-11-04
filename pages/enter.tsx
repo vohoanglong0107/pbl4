@@ -111,9 +111,9 @@ function UsernameForm() {
       debounce(async (username: string) => {
         if (username.length >= 3) {
           const ref = doc(firestore, "usernames", username);
-          const { exists } = await getDoc(ref);
-          console.log("Firestore read executed!");
-          setIsValid(!exists);
+          const res = await getDoc(ref);
+
+          setIsValid(!res.exists());
           setLoading(false);
         }
       }, 500),
