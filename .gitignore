@@ -34,7 +34,7 @@ yarn-error.log*
 .vercel
 
 # yarn
-.yarn/
+.yarn/install-state.gz
 .yarn/cache/
 
 # vscode
