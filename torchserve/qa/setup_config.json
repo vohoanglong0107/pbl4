@@ -1,4 +1,4 @@
 {
-    "model_name":"mamlong34/t5_small_cosmos_qa",
+    "model_name":"mamlong34/t5_base_race_cosmos_qa",
     "max_length":"512"
 }

@@ -8,7 +8,8 @@ docker run --rm --shm-size=1g \
         -p8082:8082 \
         -p7070:7070 \
         -p7071:7071 \
-        -v ~/pbl4_backend/model_store:/home/model-server/model-store \
+        -v $(pwd)/model-store:/home/model-server/model-store \
+        -v $(pwd)/torchserve/config.properties:/home/model-server/config.properties \
         --name=torchserve \
-        pytorch/torchserve \
-        torchserve --start --model-store=/home/model-server/model-store --models qa.mar ocr.mar --ncs
+        testpython \
+        torchserve --start --model-store=/home/model-server/model-store --models ocr.mar qa.mar --ncs

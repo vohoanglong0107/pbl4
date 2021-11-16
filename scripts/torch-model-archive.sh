@@ -1,5 +1,15 @@
 #! /bin/sh
 # qa
+
+trap cleanup ERR EXIT 1 2 3 9
+
+cleanup()
+{
+  echo "Caught Signal ... cleaning up."
+  echo "Done cleanup ... quitting."
+  exit 1
+}
+
 python torchserve/qa/download_transformers_model.py
 torch-model-archiver \
     --model-name qa \

@@ -1,2 +1,0 @@
-git+https://github.com/vohoanglong0107/pbl4-OCR
-transformers==4.12.3
