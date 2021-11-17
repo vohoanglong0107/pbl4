@@ -40,7 +40,7 @@ COPY --chown=model-server --from=compile-image /home/venv /home/venv
 
 ENV PATH="/home/venv/bin:$PATH"
 
-COPY dockerd-entrypoint.sh /usr/local/bin/dockerd-entrypoint.sh
+COPY docker/dockerd-entrypoint.sh /usr/local/bin/dockerd-entrypoint.sh
 
 RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh \
     && chown -R model-server /home/model-server

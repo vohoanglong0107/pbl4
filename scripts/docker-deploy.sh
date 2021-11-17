@@ -11,5 +11,5 @@ docker run --rm --shm-size=1g \
         -v $(pwd)/model-store:/home/model-server/model-store \
         -v $(pwd)/torchserve/config.properties:/home/model-server/config.properties \
         --name=torchserve \
-        testpython \
+        mamlong34/torchserve:python-3.8 \
         torchserve --start --model-store=/home/model-server/model-store --models ocr.mar qa.mar --ncs

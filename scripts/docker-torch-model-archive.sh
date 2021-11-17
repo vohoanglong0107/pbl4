@@ -22,7 +22,7 @@ docker run \
     --name mar \
     -v $(pwd)/model-store:/home/model-server/model-store \
     -v $(pwd)/torchserve:/home/model-server/torchserve \
-    testpython
+    mamlong34/torchserve:python-3.8
 
 docker exec -it mar /bin/bash -c \
     "pip install transformers==4.12.3"
