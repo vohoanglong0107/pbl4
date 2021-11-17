@@ -43,9 +43,9 @@ for i in range(len(a)-9):
 # print(a[0:2])
 print("cai ni la doan van: " +stri)
 print("cai ni la cau hoi: " +a[len(a)-9])
-print("cai ni la cau a:" +a[len(a)-7])
-print("cai ni la cau a:" +a[len(a)-5])
-print("cai ni la cau a:" +a[len(a)-3])
-print("cai ni la cau a:" +a[len(a)-1])
+print("cai ni la cau a:" +a[len(a)-8]+a[len(a)-7])
+print("cai ni la cau b:" +a[len(a)-6]+a[len(a)-5])
+print("cai ni la cau c:" +a[len(a)-4]+a[len(a)-3])
+print("cai ni la cau d:" +a[len(a)-2]+a[len(a)-1])
 
  
