@@ -53,7 +53,7 @@ class OCRHandler(BaseHandler, ABC):
 
             # If the image is sent as bytesarray
             if isinstance(image, (bytearray, bytes)):
-                image = Image.open(io.BytesIO(image))
+                image = np.asarray(Image.open(io.BytesIO(image)))
             else:
                 # if the image is a list
                 image = np.array(image, dtype=np.float32)
