@@ -64,7 +64,7 @@ class QAHandler(BaseHandler, ABC):
             logger.info("Received text: '%s'", input_text)
             # preprocessing text for sequence_classification and token_classification.
 
-            qa = ast.literal_eval(input_text)
+            qa = input_text
             inputs = (
                 "question: "
                 + qa["question"]
