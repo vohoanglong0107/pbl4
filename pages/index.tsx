@@ -11,15 +11,6 @@ import Reading from "../components/functionalities/reading";
 
 const Home: NextPage = () => {
   const [output, setOutput] = useState("");
-  // const handleSubmit = (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-  //   fetch("http://localhost:8000/qa", {method: "POST"})
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       setOutput(response.output);
-  //     })
-      // .catch(error => console.error(error));
-  // };
   return (
     <div className={styles.container}>
       <Head>
@@ -29,61 +20,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        {/* <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1> */}
-        {/* <TopPage /> */}
         <Reading />
-        {/* <form action="http://localhost:8000/qa" method={"POST"}>
-          <h2>Please write in the passage</h2>
-          <textarea name="passage" className={styles.card}></textarea>
-          <h2>Please write in the question</h2>
-          <input type="text" name="question" className={styles.card}></input>
-          <div className={styles.grid}>
-            <div className={styles.card}>
-              <p>
-                1) <input type="text" name="answerA"></input>
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <p>
-                2) <input type="text" name="answerB"></input>
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <p>
-                3) <input type="text" name="answerC"></input>
-              </p>
-            </div>
-
-            <div className={styles.card}>
-              <p>
-                4) <input type="text" name="answerD"></input>
-              </p>
-            </div>
-          </div>
-
-          <input type="submit" value="submit" />
-          <div className={styles.card}>
-            <p>{output}</p>
-          </div>
-        </form> */}
       </main>
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
     </div>
   );
 };

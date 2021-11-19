@@ -3,10 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import NavigationBar from "../navbar/navbar";
 import styles from "../../styles/funcs/reading.module.css";
-
-interface Output {
-  output: number
-}
+import FormData from "form-data";
 
 const Reading: NextPage = () => {
   const [output, setOutput] = useState(""); //state de show ket qua
@@ -18,7 +15,7 @@ const Reading: NextPage = () => {
     answerC: "",
     answerD: "",
   });
-  // const [ correctAns, setCorrectAns ]
+  const [image, setImage] = useState<File>();
   const handleAnswer = (trueAnswer: React.SetStateAction<string>): void => {
     setOutput(trueAnswer);
   };
@@ -33,9 +30,30 @@ const Reading: NextPage = () => {
       answerC: answer.answerC,
       answerD: answer.answerD,
     })
-    .then(response => response.data as Output)
-    .then(response => handleAnswer(String.fromCharCode(response.output - 1 + 'A'.charCodeAt(0))))
+    .then(response => response.data as number)
+    .then(response => handleAnswer(String.fromCharCode(response - 1 + 'A'.charCodeAt(0))))
     .catch(err => {console.log(err); handleAnswer(String(err))});
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>)=> {
+    setImage(e.target.files![0]);
+  };
+
+  const handleImageSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    if (image) {
+      const formData = new FormData();
+      console.log(image);
+      formData.append("data", image, image.name);
+      axios
+        .post("/api/ocr", formData)
+        .then((response) => response.data)
+        .then((response) => setPassage(String(response)))
+        .catch((err) => {
+          console.log(err);
+          setPassage(String(err));
+        });
+    }
   };
 
   // check if "answer"+state === "answer..." -> bg special : bg normal
@@ -49,13 +67,12 @@ const Reading: NextPage = () => {
           <br />
           <label className={styles.via}>Via picture </label>
           <input
-            type="text"
-            autoComplete="off"
-            name="src"
-            onChange={(e) => e.target.value}
+            type="file"
+            name="image"
+            onChange={handleImageUpload}
             className={styles.imageSrc}
           />
-          <button className={styles.uploadBtn}>Upload!</button>
+          <button className={styles.uploadBtn} onClick={handleImageSubmit}>Upload</button>
           <br />
           <label className={styles.via}>Via text </label>
           <textarea
@@ -63,9 +80,8 @@ const Reading: NextPage = () => {
             name="passage"
             value={passage}
             onChange={(e) => setPassage(e.target.value)}
-            className= {styles.passageContent}
-          >
-          </textarea>
+            className={styles.passageContent}
+          />
         </div>
         {/* onChange= {e => setDetails({...details, username: e.target.value})} */}
         <div className={styles.questionContainer}>
