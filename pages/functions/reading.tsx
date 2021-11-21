@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import NavigationBar from "../../components/navbar/navbar";
 import styles from "../../styles/funcs/reading.module.css";
 import FormData from "form-data";
+import { UserContext } from "@/lib/context";
 
 const Reading: NextPage = () => {
   const [output, setOutput] = useState(""); //state de show ket qua
@@ -16,30 +17,41 @@ const Reading: NextPage = () => {
     answerD: "",
   });
   const [image, setImage] = useState<File>();
+  const { user, username } = useContext(UserContext);
   const handleAnswer = (trueAnswer: React.SetStateAction<string>): void => {
     setOutput(trueAnswer);
   };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    axios.post("/api/qa", {
-      passage: passage,
-      question: question,
-      answerA: answer.answerA,
-      answerB: answer.answerB,
-      answerC: answer.answerC,
-      answerD: answer.answerD,
-    })
-    .then(response => response.data as number)
-    .then(response => handleAnswer(String.fromCharCode(response - 1 + 'A'.charCodeAt(0))))
-    .catch(err => {console.log(err); handleAnswer(String(err))});
+    axios
+      .post(
+        "/api/qa",
+        {
+          passage: passage,
+          question: question,
+          answerA: answer.answerA,
+          answerB: answer.answerB,
+          answerC: answer.answerC,
+          answerD: answer.answerD,
+        },
+        { params: { user_uid: user!.uid } }
+      )
+      .then((response) => response.data as number)
+      .then((response) =>
+        handleAnswer(String.fromCharCode(response - 1 + "A".charCodeAt(0)))
+      )
+      .catch((err) => {
+        console.log(err);
+        handleAnswer(String(err));
+      });
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>)=> {
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImage(e.target.files![0]);
   };
 
-  const handleImageSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleImageSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (image) {
       const formData = new FormData();
@@ -58,8 +70,8 @@ const Reading: NextPage = () => {
 
   // check if "answer"+state === "answer..." -> bg special : bg normal
 
-    return (
-     <div className={styles.container}>
+  return (
+    <div className={styles.container}>
       <NavigationBar />
       <form onSubmit={handleSubmit} method={"POST"} className={styles.content}>
         <div className={styles.passage}>
@@ -72,7 +84,9 @@ const Reading: NextPage = () => {
             onChange={handleImageUpload}
             className={styles.imageSrc}
           />
-          <button className={styles.uploadBtn} onClick={handleImageSubmit}>Upload</button>
+          <button className={styles.uploadBtn} onClick={handleImageSubmit}>
+            Upload
+          </button>
           <br />
           <label className={styles.via}>Via text </label>
           <textarea
@@ -107,7 +121,11 @@ const Reading: NextPage = () => {
             <p>
               A{" "}
               <input
-                className={"answer" + output !== "answerA"?  styles.answerInput : styles.correctAnswer}
+                className={
+                  "answer" + output !== "answerA"
+                    ? styles.answerInput
+                    : styles.correctAnswer
+                }
                 value={answer.answerA}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerA: e.target.value })
@@ -119,7 +137,11 @@ const Reading: NextPage = () => {
             <p>
               B{" "}
               <input
-                className={"answer" + output !== "answerB"? styles.answerInput : styles.correctAnswer}
+                className={
+                  "answer" + output !== "answerB"
+                    ? styles.answerInput
+                    : styles.correctAnswer
+                }
                 value={answer.answerB}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerB: e.target.value })
@@ -131,7 +153,11 @@ const Reading: NextPage = () => {
             <p>
               C{" "}
               <input
-                className={"answer" + output !== "answerC"? styles.answerInput : styles.correctAnswer}
+                className={
+                  "answer" + output !== "answerC"
+                    ? styles.answerInput
+                    : styles.correctAnswer
+                }
                 value={answer.answerC}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerC: e.target.value })
@@ -143,7 +169,11 @@ const Reading: NextPage = () => {
             <p>
               D{" "}
               <input
-                className={"answer" + output !== "answerD"? styles.answerInput : styles.correctAnswer}
+                className={
+                  "answer" + output !== "answerD"
+                    ? styles.answerInput
+                    : styles.correctAnswer
+                }
                 value={answer.answerD}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerD: e.target.value })

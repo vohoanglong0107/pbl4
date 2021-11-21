@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const backendResponse = await backendAPI.post("/qa/", { ...req.body });
+    const backendResponse = await backendAPI.post("/qa/", {...req.body }, {params: {...req.query}});
     res.status(201).json(backendResponse.data);
   } else res.status(405).json({ detail: "Method Not Allowed" });
 }
