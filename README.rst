@@ -1,10 +1,10 @@
 Prerequisites:
 ============
 1. A kubernetes cluster with at least 3 or more running kubernetes nodes. (not sure 2 is enough)
-2. At least 1 volume attach to the nodes, unformatted.
+2. At least 3 volume, attach to each nodes, unformatted.
 
 
-Setup cluster:
+Setup cluster::
 
     #Install rook-ceph
     cd torchserve/kubernetes
@@ -37,23 +37,23 @@ Setup cluster:
     ceph status
 
 
-Setup torchserve:
-
-    # back to project root
+Setup torchserve::
+    # back to torchserve dir
+    cd ..
 
     # archive model mar, result will be saved in the model-store:
     scripts/docker-torch-model-archive.sh
 
     # create persistent volume claim for model storage
-    kubectl create -f torchserve/kubernetes/pvc.yaml
+    kubectl create -f kubernetes/pvc.yaml
 
     # uploading model mar
-    kubectl create -f torchserve/kubernetes/model-store-pod.yaml
+    kubectl create -f kubernetes/model-store-pod.yaml
     kubectl exec --tty pod/model-store-pod -- mkdir /pv/model-store/
     kubectl cp model-store/ocr.mar model-store-pod:/pv/model-store/ocr.mar
     kubectl cp model-store/qa.mar model-store-pod:/pv/model-store/qa.mar
     kubectl exec --tty pod/model-store-pod -- mkdir /pv/config
-    kubectl cp torchserve/config.properties model-store-pod:/pv/config/config.properties
+    kubectl cp config.properties model-store-pod:/pv/config/config.properties
 
     # inspect volume mount
     kubectl exec --tty pod/model-store-pod -- ls -lR /pv/
@@ -61,7 +61,12 @@ Setup torchserve:
     # as model had been uploaded to pvc, delete the pod
     kubectl delete pod/model-store-pod
 
-    # change value in torchserve/config.properties and torchserve/kubernetes/values.yaml to match your usage
+    # (Optionals) assure the pvc is working 
+    kubectl create -f kubernetes/model-inspect-pod.yaml # create inspect pod
+    kubectl exec --tty pod/model-inspect-pod -- ls -lR /pv/shared
+
+    # change value in config.properties and values.yaml to match your usage
     # Install torchserve
-    helm install ts torchserve/kubernetes
+    helm install ts kubernetes
+
 

@@ -1,3 +1,2 @@
 .vscode
-model-store
-**/__pycache__/**
+torchserve/model-store
