@@ -1,27 +1,20 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "../../styles/navbar.module.css";
-import { Navbar, Container, Nav,  } from "react-bootstrap";
+import { Menu } from "antd"
 
 const TopNavbar : NextPage = () => {
 
     return (
-        <div>
-            <Navbar expand="lg" className={styles.myBg}>
-                <Container>
-                    {/* <Navbar.Brand color="#" href="#home">Lorem</Navbar.Brand> */}
-                    <label className={styles.myBrand}>Lorem</label>
-                    {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link className={styles.login} href="#login">Link</Nav.Link>
-                    </Nav>
-                    </Navbar.Collapse> */}
-                </Container>
-            </Navbar>
-        </div>
+        <Menu mode="horizontal" className={styles.myNav}>
+            <Menu.Item className={styles.name}>
+                <span><Image src="/logo.png" width="30%" height="30%" alt="logo"/></span>
+                <span><Link href={`/`}><a className={styles.titleText}>Lorem</a></Link></span>
+            </Menu.Item>
+        </Menu>
         
     );
 }

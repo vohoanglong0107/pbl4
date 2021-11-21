@@ -6,9 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "../styles/Home.module.css";
 import TopPage from "../components/top_page";
 import TopNavbar from "../components/navbar/toppage_navbar";
-import Login from "../components/login";
-import Reading from "../components/functionalities/reading";
-import HomePage from "../components/homepage/homepage";
+import { LoginForm } from "@/pages/login";
+import Reading from "./functions/reading";
+import HomePage from "./home";
+import Profile from "@/components/profile/profile";
+import Enter from "./enter";
+
+
 const Home: NextPage = () => {
   return (
     <div >
@@ -19,7 +23,7 @@ const Home: NextPage = () => {
       </Head>
       
       <main className={styles.main}>
-        <Reading />
+        <TopPage />
       </main>
     </div>
   );

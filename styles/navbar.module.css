@@ -1,62 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Ubuntu:wght@500&display=swap');
+
 .myNav {
     background-color: #00A19D;
-    display: flex;
-    align-items: center;
-    margin: auto;
-    height: 60px;
+    /* display: flex; */
+    height: 50px;
+    /* min-width: 400px; */
+    color: #fff;
 }
 
-.myBrand {
-    color: bisque;
+.name {
     font-size: 2rem;
     font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
-    position: absolute;
-    top: 0.5%;
-    left: 15%;
-}
-
-.lists {
-    display: flex;
-    margin-left: 30%;
-}
-
-/* .item {
-    display: inline-block;
-    text-decoration: none;
-    list-style-type: none;
-} */
-
-.link {
-    position: relative;
-    text-decoration: none;
-    color: beige;
-    font-family: 'Comfortaa', cursive;
-    font-weight: bold;
-    font-size: 0.75rem;
-    padding: 0 30px;
-}
-/* .link::after {
-    content: "";
-    position: absolute;
-    background-color: #FFC074;
-    height: 3px;
-    width: 0%;
-    left: 0;
-    bottom: -21px;
-    padding: 0 30px;
-    transition: 0.3s;
-} */
-
-.link:hover {
-    text-decoration: none;
     color: #fff;
-    font-family: 'Comfortaa', cursive;
     font-weight: bold;
-    font-size: 0.75rem;
+    text-decoration: none;
+    margin-left: 10px;
+    width: 10%;
+    min-width: 250px;
+    display: flex;
+}
+.name:hover {
+    background-color: #00A19D;
+    text-decoration: none;
+}
+.titleText {
+    color: #fff;
+    width: 50%;
 }
 
-/* .link:hover::after {
-    width: 100%;
-} */
+.logout {
+    border-style: none;
+    background-color: transparent;
+}
+
+.text {
+    color: #fff;
+}
+
+.item {
+    text-decoration: none;
+    color: antiquewhite;
+    margin-right: 3%; 
+    min-width: 100px;
+}
+
+.subIcon {
+    margin-left: 10%;
+}
+.usericon {
+    position: absolute;
+    right: -5%;
+
+}
+
+.item:hover {
+    list-style: none;
+}

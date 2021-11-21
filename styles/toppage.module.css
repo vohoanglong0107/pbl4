@@ -1,16 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 .container {
     background-color: #FEFBF3;
+    min-height: 100vh;
 }
 .body {
-    margin-top: 200px;
-    height: 54vh;
     font-family: 'Comfortaa', cursive;
+    display: flex;
+    float:inherit;
+}
+
+.left {
+    padding-top: 150px ;
+    padding-left: 5%;
+    width: 50%;
+    min-width: 280px;
+}
+.right {
+    width: 50%;
+    padding: 5% 10%;
 }
 .slogan {
     margin-bottom: 0;
     line-height: 2.5rem;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Luckiest Guy', cursive;
     color: #E05D5D;
     font-size: 3rem;
     width: 90%;
@@ -20,12 +33,10 @@
     margin-top: 10px;
     color: #9D9D9D;
     font-size: 15px;
-    width: 90%;
+    width: 80%;
     margin-left: 10%;
 }
-.image {
-    margin-left: 30%;
-}
+
 .button {
     font-family: 'Ubuntu', sans-serif;
     width: 150px;
@@ -44,4 +55,13 @@
     color: #00A19D;
     font-weight: bold;
     border: 2px solid #00A19D;
+    opacity: 50;
+}
+
+.linkText {
+    color: #fff;
+    font-size: 1rem;
+}
+.linkText:hover {
+    color: #00A19D;
 }

@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 import React, { useState } from "react";
 import axios from "axios";
-import NavigationBar from "../navbar/navbar";
+import NavigationBar from "../../components/navbar/navbar";
 import styles from "../../styles/funcs/reading.module.css";
+
 
 interface Output {
   output: number
@@ -18,9 +19,11 @@ const Reading: NextPage = () => {
     answerC: "",
     answerD: "",
   });
+  
   const handleAnswer = (trueAnswer: React.SetStateAction<string>): void => {
     setOutput(trueAnswer);
   };
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     axios.post("/api/qa", {
@@ -38,7 +41,6 @@ const Reading: NextPage = () => {
 
 
     return (
-        
      <div className={styles.container}>
       <NavigationBar />
       <form onSubmit={handleSubmit} method={"POST"} className={styles.content}>
@@ -135,8 +137,6 @@ const Reading: NextPage = () => {
               />
             </p>
           </div>
-          {/* TODO show ket qua */}
-          {/* <p className={styles.ans}>Answer: {output}</p> */}
           <input type="submit" className={styles.solveBtn} value="Solve!" />
         </div>
       </form>

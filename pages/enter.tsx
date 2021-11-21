@@ -41,8 +41,8 @@ function SignInButton() {
 
   return (
     <>
-      <button className="btn-google" onClick={signInWithGoogle}>
-        <Image src={googleIcon} alt={"Google icon"} width={30} /> Sign in with
+      <button className="btn-google " onClick={signInWithGoogle}>
+        <Image src={googleIcon} alt={"Google icon"} width="30%" height="30%" /> Sign in with
         Google
       </button>
       <button onClick={() => signInAnonymously(auth)}>
