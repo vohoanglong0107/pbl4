@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React, { useState, useContext } from "react";
+import  { useState, useContext } from "react";
 import axios from "axios";
 import NavigationBar from "../../components/navbar/navbar";
 import styles from "../../styles/funcs/reading.module.css";

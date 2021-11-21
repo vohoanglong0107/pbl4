@@ -2,31 +2,29 @@
 
 .myNav {
     background-color: #00A19D;
-    /* display: flex; */
     height: 50px;
-    /* min-width: 400px; */
-    color: #fff;
+    justify-content: center;
 }
 
 .name {
     font-size: 2rem;
     font-family: 'Ubuntu', sans-serif;
-    color: #fff;
+    color: antiquewhite;
     font-weight: bold;
     text-decoration: none;
+    margin: 0;
     margin-left: 10px;
     width: 10%;
     min-width: 250px;
-    display: flex;
 }
 .name:hover {
     background-color: #00A19D;
     text-decoration: none;
 }
-.titleText {
+/* .titleText {
     color: #fff;
     width: 50%;
-}
+} */
 
 .logout {
     border-style: none;
@@ -37,20 +35,27 @@
     color: #fff;
 }
 
+.allItemContainer {
+    position: relative;
+    left: -200px;
+    
+}
+.itemContainer {
+    margin-right: 3%; 
+    width: 150px;
+    padding: 0;
+    min-width: 100px;
+}
 .item {
     text-decoration: none;
     color: antiquewhite;
-    margin-right: 3%; 
-    min-width: 100px;
+}
+.item:hover {
+    color: antiquewhite;
 }
 
-.subIcon {
-    margin-left: 10%;
-}
 .usericon {
-    position: absolute;
-    right: -5%;
-
+    margin-left: 50%;
 }
 
 .item:hover {
