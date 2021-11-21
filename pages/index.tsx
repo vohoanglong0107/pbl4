@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "../styles/Home.module.css";
 import TopPage from "../components/top_page";
 import TopNavbar from "../components/navbar/toppage_navbar";
-import { LoginForm } from "@/pages/login";
+import LoginForm from "@/pages/login";
 import Reading from "./functions/reading";
 import HomePage from "./home";
 import Profile from "@/components/profile/profile";
