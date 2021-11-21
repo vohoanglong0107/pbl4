@@ -23,7 +23,7 @@ export default async function handler(
       });
 
     // read file from the temporary path
-    console.log(data);
+    // console.log(data);
     const formData = new FormData();
     formData.append(
       "data",

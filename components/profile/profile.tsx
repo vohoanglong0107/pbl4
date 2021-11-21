@@ -1,14 +1,18 @@
 import type { NextPage } from "next";
+import React, { useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import NavigationBar from "../navbar/navbar";
 import styles from "../../styles/profile.module.css"
 import { Menu } from "antd"
+import { UserContext } from "@/lib/context";
 
 const Profile : NextPage = () => {
+    const { username } = useContext(UserContext);
+
     return (
         <div className={styles.container}>
-            <NavigationBar />
+            <NavigationBar username={username} />
             <div>
                 {/* xem cách Ngọc làm up avatar -> làm theo */}
                 <Image src="/" alt="avatar" width="100%" height="100%" /> 

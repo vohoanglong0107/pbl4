@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import styles from "../../styles/Home.module.css";
 import Category from "../dropdown/category";
 
-const Item : NextPage = ({dt}) => {
+const Item = ({dt}) => {
 
     const test = () => {
         console.log(dt)

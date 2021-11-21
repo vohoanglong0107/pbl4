@@ -13,7 +13,7 @@ import styles from "../../styles/navbar.module.css";
 import Reading from "../../pages/functions/reading";
 const { SubMenu } = Menu;
 
-const NavigationBar : NextPage = ({username}) => {
+const NavigationBar = ({username}) => {
 
     return (
         <Menu mode="horizontal" className={styles.myNav}>

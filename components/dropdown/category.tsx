@@ -11,7 +11,7 @@ import { Menu, Dropdown } from "antd";
 // 1 mảng data chứa các elements thuộc type đc chọn qua cbb
 // hàm show sẽ là hàm filter ra các element có key = ...
 
-const Category : NextPage = props => {
+const Category = props => {
     const [ isVisible, setVisible ] = useState(false)
 
     // const show = (key: any) => {
@@ -25,7 +25,7 @@ const Category : NextPage = props => {
         console.log(e.key)
         // props.setKey(e.key);
         // console.log("keys: " + props.keys)
-        props.filter(e.key);
+        props.children.filter(e.key);
     }
 
     const menu = (

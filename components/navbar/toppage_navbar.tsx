@@ -6,7 +6,7 @@ import Image from "next/image";
 import styles from "../../styles/navbar.module.css";
 import { Menu } from "antd"
 
-const TopNavbar : NextPage = () => {
+const TopNavbar = () => {
 
     return (
         <Menu mode="horizontal" className={styles.myNav}>
