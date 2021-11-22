@@ -6,25 +6,23 @@
   background-color: #FEFBF3;
 }
 
+.cateContainer {
+  font-family: 'Ubuntu', sans-serif;
+}
 .categoryButton {
   position: relative;
   left: 70%;
   top: 60px;
-  border-radius: 2rem;
+  outline: none;
+  /* border-radius: 2rem; */
   width: 120px;
   height: 40px;
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: 'Ubuntu', sans-serif;
   color: #fff;
   border-style: none;
-  background-color: #00A19D;
+  background-color: transparent;
 }
 
-.categoryButton:hover {
-  background-color: #fff;
-  border: 2px solid #00A19D;
-}
+
 
 .cate {
   margin: auto;
@@ -33,23 +31,27 @@
 .cate:hover {
   color: #00A19D;
 }
-
-
-
+.test {
+  border: 1px solid;
+  
+}
+.test::after {
+  border: 1px solid black;
+}
 .dropdown {
-  border: 2px solid #00A19D;
-  margin-top: 10px;
-  margin-left: -80px;
-  width: 250%;
-  border-radius: 1rem;
-  background-color: #F6F6F6;
-  align-items: center;
+  width: 90%;
+  height: 30px;
+}
+.category {
+  color: #00A19D;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .item {
   color: #00A19D;
   font-size: 1rem;
-  /* font-weight: bold; */
   font-family: 'Comfortaa', cursive;
   text-align: center;
 }
@@ -101,12 +103,11 @@
 .pageDiv {
   position: relative;
   bottom: 50px;
-  /* align-items: center; */
-  
+  margin-top: 100px;
+  text-align: center;
 
 }
 .pagination {
-  text-align: center;
   color: #00A19D;
 }
 

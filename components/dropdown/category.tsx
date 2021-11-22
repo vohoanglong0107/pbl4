@@ -2,56 +2,43 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import React, { useState } from 'react';
 import styles from "../../styles/Home.module.css";
-import { Menu, Dropdown } from "antd";
+// import { Menu, Dropdown } from "antd";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
-// 1 mảng data chưa all elements
-// 1 mảng data chứa các elements thuộc type đc chọn qua cbb
-// hàm show sẽ là hàm filter ra các element có key = ...
+const Category = props => {
+    const [ category, setCategory ] = useState('')
 
-const Category : NextPage = props => {
-    const [ isVisible, setVisible ] = useState(false)
-
-    // const show = (key: any) => {
-    //     console.log("datas: "+ datas)
-    //     const filteredData = datas.filter((index: any) => key === datas[index].id);
-    //     console.log(filteredData)
-    //     setData(...filteredData);
-    // }
-
-    const handleMenuClick = (e: { key: any; }) => {
-        console.log(e.key)
-        // props.setKey(e.key);
-        // console.log("keys: " + props.keys)
-        props.filter(e.key);
-    }
-
-    const menu = (
-        <Menu className={styles.dropdown} onClick={handleMenuClick}>
-          <Menu.Item className={styles.item} key="1">Multiple choices</Menu.Item>
-          <Menu.Item className={styles.item} key="2">Reading</Menu.Item>
-          <Menu.Item className={styles.item} key="3">Listening</Menu.Item>
-          <Menu.Item className={styles.item} key="4">Speaking</Menu.Item>
-        </Menu>
-      );
-
-    const handleHover = (flag: boolean | ((prevState: boolean) => boolean)) => {
-        setVisible(flag);
+    const handleClick = (event) => {
+        let val = event.target.value;
+        console.log("val",val)
+        setCategory(val)
+        props.filter(val);
     }
 
     return (
-        <Dropdown
-            overlay={menu}
-            onVisibleChange={handleHover}
-            visible={isVisible}
-        >
-            <a className="ant-dropdown-link" style={{color: "#fff", fontSize: "1rem"}} href="https://ant.design/components/dropdown/" onClick={e => e.preventDefault()}>
-                <p className={styles.cate}>Category</p> 
-            </a>
-
-        </Dropdown>
+        <div className={styles.cateContainer}>
+            <FormControl sx={{ m: 1, minWidth: 120 }} className={styles.test}>
+                <Select
+                value={category}
+                onChange={handleClick}
+                label=""
+                className={styles.category}
+                >
+                <MenuItem className={styles.item} value={0}>ALL</MenuItem>
+                <MenuItem className={styles.item} value={1}>Multiple choices</MenuItem>
+                <MenuItem className={styles.item} value={2}>Reading</MenuItem>
+                <MenuItem className={styles.item} value={3}>Listening</MenuItem>
+                <MenuItem className={styles.item} value={4}>Speaking</MenuItem>
+                </Select>
+            </FormControl>
+        </div>
     );
 }
 

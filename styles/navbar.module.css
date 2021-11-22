@@ -8,8 +8,6 @@
 
 .name {
     font-size: 2rem;
-    font-family: 'Ubuntu', sans-serif;
-    color: antiquewhite;
     font-weight: bold;
     text-decoration: none;
     margin: 0;
@@ -17,14 +15,17 @@
     width: 10%;
     min-width: 250px;
 }
+.nameText {
+    color: antiquewhite;
+    font-family: 'Ubuntu', sans-serif;
+}
+.nameText:hover {
+    color: antiquewhite;
+}
 .name:hover {
     background-color: #00A19D;
     text-decoration: none;
 }
-/* .titleText {
-    color: #fff;
-    width: 50%;
-} */
 
 .logout {
     border-style: none;
@@ -37,7 +38,8 @@
 
 .allItemContainer {
     position: relative;
-    left: -200px;
+    left: -20%;
+    width: 50%;
     
 }
 .itemContainer {
@@ -47,6 +49,8 @@
     min-width: 100px;
 }
 .item {
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     color: antiquewhite;
 }
@@ -54,10 +58,44 @@
     color: antiquewhite;
 }
 
-.usericon {
-    margin-left: 50%;
+.itemMobile {
+    color: #00A19D;
+    font-family: 'Montserrat', sans-serif;
 }
 
+.usericon {
+    margin-left: 25%;
+}
+
+.usericonMobile {
+    /* background-color: lightsalmon; */
+    margin-left: 5px;
+}
 .item:hover {
     list-style: none;
+}
+.username {
+    font-size: 1rem;
+    color: #fff;
+    margin: auto 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.usernameMobile {
+    color: #00A19D;
+    font-size: 1rem;
+    margin: auto 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown {
+    border-radius: 1rem;
+}
+.dropItem {
+    background-color: transparent;
+    color: #00A19D;
+    font-family: 'Montserrat', sans-serif;
+}
+.dropItem:hover {
+    background-color: transparent;
 }

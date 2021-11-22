@@ -3,15 +3,9 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-// import 'antd/dist/antd.css';
-// import { Menu } from 'antd';
-// import {
-//     HomeOutlined
-//   } from "@ant-design/icons";
   import { SignOutButton } from "../../pages/login";
 import styles from "../../styles/navbar.module.css";
 import Reading from "../../pages/functions/reading";
-// const { SubMenu } = Menu;
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -34,27 +28,44 @@ const NavigationBar = ({username}) => {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    
+      const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
+      };
+    
+      const handleMenuClose = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+      };
+    
+      const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+      };
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-        }}
-        id={menuId}
-        keepMounted
-        transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-        }}
-        open={isMenuOpen}
-        onClose={()=>console.log("handleMenuClose")}
-        >
-        <MenuItem onClick={()=>console.log("handleMenuClose")}>Profile</MenuItem>
-        <MenuItem onClick={()=>console.log("handleMenuClose")}>My account</MenuItem>
+            anchorEl={anchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+            >
+            <MenuItem className={styles.dropItem}>Profile</MenuItem>
+            <MenuItem className={styles.dropItem}><SignOutButton /></MenuItem>
         </Menu>
-    );
+    )
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -71,22 +82,41 @@ const NavigationBar = ({username}) => {
             horizontal: 'right',
         }}
         open={isMobileMenuOpen}
-        onClose={()=>console.log("handleMobileMenuClose")}
+        onClose={handleMobileMenuClose}
         >
         <MenuItem>
-            <p>Messages</p>
+            <Link href={`/500`}><a className={styles.itemMobile}>Multiple Choices</a></Link>
         </MenuItem>
         <MenuItem>
-            <p>Notifications</p>
+            <Link href={`/functions/reading`}><a className={styles.itemMobile}>Reading</a></Link>
         </MenuItem>
-        <MenuItem onClick={()=>console.log("handleProfileMenuOpen")}>
-            <p>Profile</p>
+        <MenuItem>
+            <Link href={`/500`}><a className={styles.itemMobile}>Listening</a></Link>
         </MenuItem>
+        <MenuItem>
+            <Link href={`/500`}><a className={styles.itemMobile}>Speaking</a></Link>
+        </MenuItem>
+        {/* <MenuItem>
+            <ProfileDropdown onClick={handleProfileMenuOpen} /> 
+        </MenuItem> */}
+        <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            className={styles.usericonMobile}
+            onClick={handleProfileMenuOpen}
+        >
+            
+            <Image  src="/usericon.png" alt="user-icon" width="30%" height="30%" />
+            <p className={styles.usernameMobile}>{username}</p>
+        </IconButton>
         </Menu>
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }} >
+        <Box sx={{ flexGrow: 1 }} className={styles.common}>
             <AppBar position="static" className={styles.myNav}>
                 <Toolbar>
                 <Typography
@@ -94,7 +124,7 @@ const NavigationBar = ({username}) => {
                     component="div"
                     className={styles.name}
                 >
-                    Lorem
+                    <Link href={`/home`}><a className={styles.nameText}>Lorem</a></Link>
                 </Typography>
                 
                 <Box sx={{ flexGrow: 1 }} />
@@ -111,7 +141,19 @@ const NavigationBar = ({username}) => {
                     <Button className={styles.itemContainer} color="inherit">
                         <Link href={`/500`}><a className={styles.item}>Speaking</a></Link>
                     </Button>
-                    <ProfileDropdown />
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                        className={styles.usericon}
+                        onClick={handleProfileMenuOpen}
+                    >
+                        
+                        <Image  src="/usericon.png" alt="user-icon" width="30%" height="30%" />
+                        <p className={styles.username}>{username}</p>
+                    </IconButton>
                 </Box>
                 <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
@@ -119,7 +161,7 @@ const NavigationBar = ({username}) => {
                     aria-label="show more"
                     aria-controls={mobileMenuId}
                     aria-haspopup="true"
-                    onClick={()=>console.log("handleMobileMenuOpen")}
+                    onClick={handleMobileMenuOpen}
                     color="inherit"
                     >
                     <MoreIcon />

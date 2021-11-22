@@ -8,13 +8,20 @@ import Category from "../dropdown/category";
 
 const Item = ({dt}) => {
 
-    const test = () => {
-        console.log(dt)
+    
+    function setType(dt) {
+        let type = ""
+        if(dt.id === 1) type = "Multiple choices"
+        if(dt.id === 2) type = "Reading"
+        if(dt.id === 3) type = "Listening"
+        if(dt.id === 4) type = "Speaking"
+        return type
     }
+
     return (
-        <div className={styles.history} onClick={test}>
-            <p className={styles.type}>{dt.type}</p>
-            <p className={styles.content}>{dt.content.substring(0, 84)}...<a className={styles.readmore}>Read more</a></p>
+        <div className={styles.history} >
+            <p className={styles.type}>{setType(dt)}</p>
+            <p className={styles.content}>{dt.passage.substring(0, 84)}...<a className={styles.readmore}>Read more</a></p>
         </div>
     );
 }

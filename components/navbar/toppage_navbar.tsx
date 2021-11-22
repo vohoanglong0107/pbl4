@@ -13,20 +13,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 const TopNavbar = () => {
-    // const [anchorEl, setAnchorEl] = useState(null);
-    // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
-    // const isMenuOpen = Boolean(anchorEl);
-    // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    
-        // <Menu mode="horizontal" className={styles.myNav}>
-        //     <Menu.Item className={styles.name}>
-        //         <span><Image src="/logo.png" width="30%" height="30%" alt="logo"/></span>
-        //         <span><Link href={`/`}><a className={styles.titleText}>Lorem</a></Link></span>
-        //     </Menu.Item>
-        // </Menu>
-        
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className={styles.myNav}>
@@ -36,7 +22,7 @@ const TopNavbar = () => {
             component="div"
             className={styles.name}
           >
-            Lorem
+            <Link href={`/`}><a className={styles.nameText}>Lorem</a></Link>
           </Typography>
         </Toolbar>
       </AppBar>

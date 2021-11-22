@@ -59,7 +59,7 @@ export const SignInButton = () => {
 
 // Sign out button
 export const SignOutButton = () => {
-  return <button className={style.logout} onClick={() => signOut(auth)}>Sign Out</button>;
+  return <button className={style.logout} onClick={() => {console.log("logout");signOut(auth)}}>Sign Out</button>;
 }
 
 export default LoginForm;
