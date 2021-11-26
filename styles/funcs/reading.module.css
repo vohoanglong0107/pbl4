@@ -162,3 +162,9 @@
     /* font-size: 1rem; */
     font-weight: bold;
 }
+
+.spinner {
+    position: relative;
+    bottom: -5px;
+    right: -5px;
+}

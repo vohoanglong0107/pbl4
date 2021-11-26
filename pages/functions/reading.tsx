@@ -9,12 +9,14 @@ import { styled } from '@mui/material/styles';
 import { UserContext } from "@/lib/context";
 import { Grid } from "@mui/material";
 import { Paper } from "@mui/material";
+import { Spinner } from "react-bootstrap";
 
 
 const Reading: NextPage = () => {
   const router = useRouter();
   const query = router.query;
   console.log(query);
+  const [ isLoading, setIsLoading ] = useState(false)
   const [output, setOutput] = useState(""); 
   const [passage, setPassage] = useState("");
   const [question, setQuestion] = useState("");
@@ -53,6 +55,7 @@ const Reading: NextPage = () => {
         console.log(err);
         handleAnswer(String(err));
       });
+      setIsLoading(false)
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,34 +87,36 @@ const Reading: NextPage = () => {
       answerC: query.answerC,
       answerD: query.answerD
     })
+    setIsLoading(true)
   },[])
   
   return (
     <div className={styles.container}>
       <NavigationBar username={username} />
-      <form onSubmit={handleSubmit} method={"POST"} className={styles.content}>
-        <label className={styles.instruction}>Passage </label><br />
+        <form onSubmit={handleSubmit} method={"POST"} className={styles.content}>
         <div className={styles.passage}>
-            <label className={styles.via}>Via picture</label>
-                <input
-                type="file"
-                name="image"
-                onChange={handleImageUpload}
-                className={styles.imageSrc}
-              />
-              <button className={styles.uploadBtn} onClick={handleImageSubmit}>
-                Upload
-              </button>
+          <label className={styles.instruction}>Passage </label>
           <br />
-          </div>
+          <label className={styles.via}>Via picture </label>
+          <input
+            type="text"
+            autoComplete="off"
+            name="src"
+            onChange={(e) => e.target.value}
+            className={styles.imageSrc}
+          />
+          <button className={styles.uploadBtn}>Upload!</button>
+          <br />
           <label className={styles.via}>Via text </label>
           <textarea
             rows={5}
             name="passage"
             value={passage}
             onChange={(e) => setPassage(e.target.value)}
-            className={styles.passageContent}
-          />
+            className= {styles.passageContent}
+          >
+          </textarea>
+        </div>
         {/* onChange= {e => setDetails({...details, username: e.target.value})}  */}
         <div className={styles.questionContainer}>
           <label className={styles.instruction}>
@@ -136,11 +141,7 @@ const Reading: NextPage = () => {
             <p>
               A{" "}
               <input
-                className={
-                  "answer" + output !== "answerA"
-                    ? styles.answerInput
-                    : styles.correctAnswer
-                }
+                className={"answer" + output !== "answerA"?  styles.answerInput : styles.correctAnswer}
                 value={answer.answerA}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerA: e.target.value })
@@ -152,11 +153,7 @@ const Reading: NextPage = () => {
             <p>
               B{" "}
               <input
-                className={
-                  "answer" + output !== "answerB"
-                    ? styles.answerInput
-                    : styles.correctAnswer
-                }
+                className={"answer" + output !== "answerB"? styles.answerInput : styles.correctAnswer}
                 value={answer.answerB}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerB: e.target.value })
@@ -168,11 +165,7 @@ const Reading: NextPage = () => {
             <p>
               C{" "}
               <input
-                className={
-                  "answer" + output !== "answerC"
-                    ? styles.answerInput
-                    : styles.correctAnswer
-                }
+                className={"answer" + output !== "answerC"? styles.answerInput : styles.correctAnswer}
                 value={answer.answerC}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerC: e.target.value })
@@ -184,11 +177,7 @@ const Reading: NextPage = () => {
             <p>
               D{" "}
               <input
-                className={
-                  "answer" + output !== "answerD"
-                    ? styles.answerInput
-                    : styles.correctAnswer
-                }
+                className={"answer" + output !== "answerD"? styles.answerInput : styles.correctAnswer}
                 value={answer.answerD}
                 onChange={(e) =>
                   setAnswer({ ...answer, answerD: e.target.value })
@@ -199,8 +188,14 @@ const Reading: NextPage = () => {
             </p>
           </div>
           <input type="submit" className={styles.solveBtn} value="Solve!" />
+          {isLoading?"":(
+            <span className={styles.spinner}>
+            <Spinner animation="border" variant="warning" />
+        </span>
+          )}
         </div>
-      </form>
+        </form>
+
     </div>
   );
 };

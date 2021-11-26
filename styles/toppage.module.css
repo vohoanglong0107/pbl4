@@ -66,3 +66,9 @@
 .linkText:hover {
     color: #00A19D;
 }
+
+.spinner {
+    position: fixed;
+    bottom: 10px;
+    right: 50px;
+}

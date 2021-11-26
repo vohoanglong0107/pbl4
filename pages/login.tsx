@@ -16,7 +16,7 @@ import Router, {useRouter}  from 'next/router'
 
 const LoginForm: NextPage = () => {
   const { user, username } = useContext(UserContext);
-
+  const [isLoading, setIsLoading] = useState(false)
   // 1. user signed out <SignInButton />
   // 2. user signed in, but missing username <UsernameForm />
   // 3. user signed in, has username <SignOutButton />
@@ -31,7 +31,7 @@ const LoginForm: NextPage = () => {
         )
       ) : (
         <div className={styles.loginForm}>
-            <Login />
+            <Login isLoading={isLoading} setIsLoading={setIsLoading} />
           </div>
       )}
     </main>
@@ -39,14 +39,18 @@ const LoginForm: NextPage = () => {
 };
 
 // Sign in with Google button
-export const SignInButton = () => {
+export const SignInButton = ({setIsLoading}) => {
+  
   const signInWithGoogle = async () => {
     await signInWithPopup(auth, googleProvider);
   };
 
   return (
     <>
-      <button className={styles.ggButton} onClick={signInWithGoogle}>
+      <button className={styles.ggButton} onClick={()=>{
+        setIsLoading(true)
+        signInWithGoogle()
+      } }>
         <Image src={googleIcon} alt={"Google icon"} width="30%" height="30%" /> Sign in with
         Google
       </button>
@@ -59,7 +63,7 @@ export const SignInButton = () => {
 
 // Sign out button
 export const SignOutButton = () => {
-  return <button className={style.logout} onClick={() => {console.log("logout");signOut(auth)}}>Sign Out</button>;
+  return <button className={style.logout} onClick={() => {signOut(auth)}}>Sign Out</button>;
 }
 
 export default LoginForm;

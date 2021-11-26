@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-  import { SignOutButton } from "../../pages/login";
+import { SignOutButton } from "../../pages/login";
 import styles from "../../styles/navbar.module.css";
 import Reading from "../../pages/functions/reading";
 import AppBar from '@mui/material/AppBar';
@@ -20,12 +20,13 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
 import ProfileDropdown from "../dropdown/profile";
+import { Spinner } from "react-bootstrap";
 
 const NavigationBar = ({username}) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
+    const [isLoading, setIsLoading] = useState(false)
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -85,20 +86,17 @@ const NavigationBar = ({username}) => {
         onClose={handleMobileMenuClose}
         >
         <MenuItem>
-            <Link href={`/500`}><a className={styles.itemMobile}>Multiple Choices</a></Link>
+            <Link href={`/500`}><a onClick={()=>setIsLoading(true)} className={styles.itemMobile}>Multiple Choices</a></Link>
         </MenuItem>
         <MenuItem>
-            <Link href={`/functions/reading`}><a className={styles.itemMobile}>Reading</a></Link>
+            <Link href={`/functions/reading`}><a onClick={()=>setIsLoading(true)} className={styles.itemMobile}>Reading</a></Link>
         </MenuItem>
         <MenuItem>
-            <Link href={`/500`}><a className={styles.itemMobile}>Listening</a></Link>
+            <Link href={`/500`}><a onClick={()=>setIsLoading(true)} className={styles.itemMobile}>Listening</a></Link>
         </MenuItem>
         <MenuItem>
-            <Link href={`/500`}><a className={styles.itemMobile}>Speaking</a></Link>
+            <Link href={`/500`}><a onClick={()=>setIsLoading(true)} className={styles.itemMobile}>Speaking</a></Link>
         </MenuItem>
-        {/* <MenuItem>
-            <ProfileDropdown onClick={handleProfileMenuOpen} /> 
-        </MenuItem> */}
         <IconButton
             size="large"
             edge="start"
@@ -124,7 +122,7 @@ const NavigationBar = ({username}) => {
                     component="div"
                     className={styles.name}
                 >
-                    <Link href={`/home`}><a className={styles.nameText}>Lorem</a></Link>
+                    <Link href={`/home`}><a onClick={()=>setIsLoading(true)} className={styles.nameText}>Lorem</a></Link>
                 </Typography>
                 
                 <Box sx={{ flexGrow: 1 }} />
@@ -171,31 +169,15 @@ const NavigationBar = ({username}) => {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
+
+            {isLoading?(
+                <div className={styles.spinner}>
+                    <Spinner animation="border" variant="warning" />
+                </div>
+            ):""}
         </Box>
     );
 }
 
 
 export default NavigationBar;
-// <Menu className={styles.myNav}>
-        //     <Menu.Item className={styles.name}>
-        //         <span><Image src="/logo.png" width="30%" height="30%" alt="logo"/></span>
-        //         <span><Link href={`/home`}><a>Lorem</a></Link></span>
-        //     </Menu.Item>
-        //     <Menu.Item className={styles.item} key="mul">
-        //         <Link href={`/500`}><a>Multiple Choices</a></Link>
-        //     </Menu.Item>
-        //     <Menu.Item className={styles.item} key="read">
-        //         <Link href={`/functions/reading`}><a>Reading</a></Link>
-        //     </Menu.Item>
-        //     <Menu.Item className={styles.item} key="listen"><Link href={`/500`}><a>Listening</a></Link></Menu.Item>
-        //     <Menu.Item className={styles.item} key="speak"><Link href={`/500`}><a>Speaking</a></Link></Menu.Item>
-        //     <SubMenu icon={<HomeOutlined />} className={styles.subIcon} >
-        //         <Menu.Item className={styles.usericon}>
-        //             <Image src="/usericon.png" alt="user-icon" width="30%" height="30%" />{username}
-        //         </Menu.Item>
-        //         <Menu.Item>
-        //             <SignOutButton />
-        //         </Menu.Item>
-        //     </SubMenu>
-        // </Menu>

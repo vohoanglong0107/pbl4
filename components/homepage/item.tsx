@@ -6,15 +6,14 @@ import 'antd/dist/antd.css';
 import styles from "../../styles/Home.module.css";
 import Category from "../dropdown/category";
 
-const Item = ({saved, dt}) => {
-    console.log("dt",dt);
+const Item = ({isLoading, setIsLoading, dt}) => {
     
     function setType(dt) {
         let type = ""
-        if(dt.id === 1) type = "Multiple choices"
-        if(dt.id === 2) type = "Reading"
-        if(dt.id === 3) type = "Listening"
-        if(dt.id === 4) type = "Speaking"
+        if(dt.cat_id === 1) type = "Reading"
+        if(dt.cat_id === 2) type = "Multiple choices"
+        if(dt.cat_id === 3) type = "Listening"
+        if(dt.cat_id === 4) type = "Speaking"
         return type
     }
     
@@ -26,7 +25,7 @@ const Item = ({saved, dt}) => {
                 query: {
                     ...dt                    
                 },
-            }} ><a className={styles.readmore}>Read more</a></Link></p>
+            }} ><a onClick={()=>setIsLoading(true)} className={styles.readmore}>Read more</a></Link></p>
         </div>
     );
 }

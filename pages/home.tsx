@@ -14,6 +14,8 @@ import { UserContext } from "@/lib/context";
 import { Pagination } from 'antd';
 import axios from "axios";
 import AppPagination from "@/components/pagination";
+import { Spinner } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const HomePage : NextPage = () => {
 
@@ -25,6 +27,7 @@ const HomePage : NextPage = () => {
         return max + 1
     }
 
+    const [ isLoading, setIsLoading ] = useState(false)
     const [ key, setKey ] = useState(null);
     const [ history, setHistory ] = useState([])
     const [ data, setData ] = useState(history)
@@ -48,7 +51,7 @@ const HomePage : NextPage = () => {
         }
         else 
         {
-            let filteredData = await history.filter(item => item.id === parseInt(key))
+            let filteredData = await history.filter(item => item.cat_id === parseInt(key))
             setTotalPage(len(filteredData))
             console.log("filtered : ", filteredData)
             setData(filteredData)
@@ -57,11 +60,13 @@ const HomePage : NextPage = () => {
     
     useEffect(()=>{
         async function getHistory() {
+            console.log("function is called")
             const histories = await axios.get('/api/history', {params: {user_uid: user!.uid}});
             const dt = histories.data
             const datas =[]
             if(runTime < 2) {
                 dt.forEach((item) => {
+                    item.cat_id = 1;
                     datas.push(item)
                 })
                 setHistory(datas)
@@ -69,8 +74,10 @@ const HomePage : NextPage = () => {
                 setData(tmp)
                 setTotalPage(len(history))
                 setRunTime(runTime + 1)
+                setIsLoading(true)
             }
         }
+        
         getHistory();
     }, [runTime]); 
 
@@ -79,21 +86,28 @@ const HomePage : NextPage = () => {
         <div className={styles.homepageContainer}>
             <NavigationBar username={username} />
             <div className={styles.body}>
-                <button className={styles.categoryButton} onClick={() => setData(history.slice(indexOfFirstItem, indexOfLastItem))}><Category filter={filter} setKey={setKey} keys={key} /></button>
-                <ul className={styles.historyContainer}>
-                    {data.map((item: any) => <li><Item saved={saved} dt={item}/></li>)}
-                </ul>
-                <div className={styles.pageDiv}>
-                    {data.length?(
-                        <AppPagination pageNumber={totalPage} paginate={handleChangePage} />
-                    ):
-                    ( <p className={styles.empty}>No lesson 😕</p> 
-                    )}
-                    
+            {isLoading?(
+                <>
+                    <button className={styles.categoryButton} onClick={() => setData(history.slice(indexOfFirstItem, indexOfLastItem))}><Category filter={filter} setKey={setKey} keys={key} /></button>
+                    <ul className={styles.historyContainer}>
+                        {data.map((item: any) => <li><Item isLoading={isLoading} setIsLoading={setIsLoading} saved={saved} dt={item}/></li>)}
+                    </ul>
+                        
+                    <div className={styles.pageDiv}>
+                        {data.length?(
+                            <AppPagination pageNumber={totalPage} paginate={handleChangePage} />
+                        ):
+                        ( <p className={styles.empty}>No lesson 😕</p> 
+                        )}
+                    </div>
+                </>
+            ):
+            (
+                <div className={styles.spinner}>
+                    <Spinner animation="border" variant="warning" />
                 </div>
+            )}
             </div>
-            
-            
         </div>
     );
 }

@@ -7,17 +7,16 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "../styles/login.module.css"
 import { SignInButton } from "../pages/login";
 import TopNavbar from "./navbar/toppage_navbar";
+import { Spinner } from "react-bootstrap";
 
-
-const Login : NextPage = () => {
+const Login : NextPage = ({isLoading, setIsLoading}) => {
 
     const [input, setInput] = useState({
         email: "",
         password: ""
     });
-    
+
     return (
-        
         <div className={styles.container}>
             <TopNavbar />
             <div className={styles.body}>
@@ -27,7 +26,7 @@ const Login : NextPage = () => {
                 </div>
                 <div className={styles.formContainer}>
                     <div className={styles.loginWith}>
-                            <SignInButton />
+                            <SignInButton setIsLoading={setIsLoading} />
                     </div>
                     <br />
                     <p className={styles.or}>or</p><br/>
@@ -46,7 +45,11 @@ const Login : NextPage = () => {
                         <a className={styles.signup} href="/signup">Not having account yet? SIGN UP!</a>
                     </div>
                 </div>
-                
+                {isLoading?(
+                     <div className={styles.spinner}>
+                        <Spinner animation="border" variant="warning" />
+                    </div>
+                ):""}
             </div>
         </div>
                 

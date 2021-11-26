@@ -13,6 +13,7 @@ import Profile from "@/components/profile/profile";
 import Enter from "./enter";
 import React from 'react';
 React.useEffectLayout = React.useEffect;
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Home: NextPage = () => {

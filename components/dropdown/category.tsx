@@ -32,8 +32,8 @@ const Category = props => {
                 className={styles.category}
                 >
                 <MenuItem className={styles.item} value={0}>ALL</MenuItem>
-                <MenuItem className={styles.item} value={1}>Multiple choices</MenuItem>
-                <MenuItem className={styles.item} value={2}>Reading</MenuItem>
+                <MenuItem className={styles.item} value={2}>Multiple choices</MenuItem>
+                <MenuItem className={styles.item} value={1}>Reading</MenuItem>
                 <MenuItem className={styles.item} value={3}>Listening</MenuItem>
                 <MenuItem className={styles.item} value={4}>Speaking</MenuItem>
                 </Select>

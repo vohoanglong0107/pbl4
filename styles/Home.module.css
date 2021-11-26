@@ -119,3 +119,9 @@
   font-family: 'Montserrat', sans-serif;
   color: #FFC074;
 }
+
+.spinner {
+  position: fixed;
+  bottom: 10px;
+  right: 50px;
+}
