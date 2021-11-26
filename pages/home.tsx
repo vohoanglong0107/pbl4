@@ -18,7 +18,7 @@ import AppPagination from "@/components/pagination";
 const HomePage : NextPage = () => {
 
     const { user, username } = useContext(UserContext)
-    
+    const [ saved ] = useState(true)
     function len (arr) {
         let max = Math.floor(arr.length / 5) 
         if(arr.length % 5 === 0) return max
@@ -42,11 +42,9 @@ const HomePage : NextPage = () => {
     const indexOfFirstItem = indexOfLastItem - itemPerPage;
 
     const filter = async (key: any) => {
-        
         if(parseInt(key) === 0) {
             setRunTime(runTime - 1)
             setTotalPage(len(history))
-            
         }
         else 
         {
@@ -80,18 +78,21 @@ const HomePage : NextPage = () => {
     return (
         <div className={styles.homepageContainer}>
             <NavigationBar username={username} />
-            <button className={styles.categoryButton} onClick={() => setData(history.slice(indexOfFirstItem, indexOfLastItem))}><Category filter={filter} setKey={setKey} keys={key} /></button>
-            <ul className={styles.historyContainer}>
-                {data.map((item: any) => <li><Item dt={item}/></li>)}
-            </ul>
-            <div className={styles.pageDiv}>
-                {data.length?(
-                    <AppPagination pageNumber={totalPage} paginate={handleChangePage} />
-                ):
-                ( <p className={styles.empty}>No lesson 😕</p> 
-                )}
-                
+            <div className={styles.body}>
+                <button className={styles.categoryButton} onClick={() => setData(history.slice(indexOfFirstItem, indexOfLastItem))}><Category filter={filter} setKey={setKey} keys={key} /></button>
+                <ul className={styles.historyContainer}>
+                    {data.map((item: any) => <li><Item saved={saved} dt={item}/></li>)}
+                </ul>
+                <div className={styles.pageDiv}>
+                    {data.length?(
+                        <AppPagination pageNumber={totalPage} paginate={handleChangePage} />
+                    ):
+                    ( <p className={styles.empty}>No lesson 😕</p> 
+                    )}
+                    
+                </div>
             </div>
+            
             
         </div>
     );

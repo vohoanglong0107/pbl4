@@ -5,7 +5,9 @@
   min-height: 100vh;
   background-color: #FEFBF3;
 }
-
+.body {
+  margin-top: 30px;
+}
 .cateContainer {
   font-family: 'Ubuntu', sans-serif;
 }

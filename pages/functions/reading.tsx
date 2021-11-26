@@ -1,13 +1,21 @@
 import type { NextPage } from "next";
-import  { useState, useContext } from "react";
+import { useRouter } from "next/router"
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import NavigationBar from "../../components/navbar/navbar";
 import styles from "../../styles/funcs/reading.module.css";
 import FormData from "form-data";
+import { styled } from '@mui/material/styles';
 import { UserContext } from "@/lib/context";
+import { Grid } from "@mui/material";
+import { Paper } from "@mui/material";
+
 
 const Reading: NextPage = () => {
-  const [output, setOutput] = useState(""); //state de show ket qua
+  const router = useRouter();
+  const query = router.query;
+  console.log(query);
+  const [output, setOutput] = useState(""); 
   const [passage, setPassage] = useState("");
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState({
@@ -55,7 +63,6 @@ const Reading: NextPage = () => {
     e.preventDefault();
     if (image) {
       const formData = new FormData();
-      console.log(image);
       formData.append("data", image, image.name);
       axios
         .post("/api/ocr", formData)
@@ -68,26 +75,35 @@ const Reading: NextPage = () => {
     }
   };
 
-  // check if "answer"+state === "answer..." -> bg special : bg normal
-
+  useEffect(() => {
+    setPassage(query.passage)
+    setQuestion(query.question)
+    setAnswer({
+      answerA: query.answerA,
+      answerB: query.answerB,
+      answerC: query.answerC,
+      answerD: query.answerD
+    })
+  },[])
+  
   return (
     <div className={styles.container}>
       <NavigationBar username={username} />
       <form onSubmit={handleSubmit} method={"POST"} className={styles.content}>
+        <label className={styles.instruction}>Passage </label><br />
         <div className={styles.passage}>
-          <label className={styles.instruction}>Passage </label>
+            <label className={styles.via}>Via picture</label>
+                <input
+                type="file"
+                name="image"
+                onChange={handleImageUpload}
+                className={styles.imageSrc}
+              />
+              <button className={styles.uploadBtn} onClick={handleImageSubmit}>
+                Upload
+              </button>
           <br />
-          <label className={styles.via}>Via picture </label>
-          <input
-            type="file"
-            name="image"
-            onChange={handleImageUpload}
-            className={styles.imageSrc}
-          />
-          <button className={styles.uploadBtn} onClick={handleImageSubmit}>
-            Upload
-          </button>
-          <br />
+          </div>
           <label className={styles.via}>Via text </label>
           <textarea
             rows={5}
@@ -96,7 +112,6 @@ const Reading: NextPage = () => {
             onChange={(e) => setPassage(e.target.value)}
             className={styles.passageContent}
           />
-        </div>
         {/* onChange= {e => setDetails({...details, username: e.target.value})}  */}
         <div className={styles.questionContainer}>
           <label className={styles.instruction}>

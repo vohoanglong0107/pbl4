@@ -4,8 +4,8 @@
     background-color: #FEFBF3;
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
+    margin-top: 30px;
 }
-
 /* ------ passage ------- */
 .passage {
     height: 35%;
@@ -63,7 +63,7 @@
     background-color: #EFEFEF;
     border-style: none;
     display: flex;
-    padding: 2%;
+    padding: 15px;
 } 
 .passageContent:focus {
     outline: none;
@@ -71,7 +71,9 @@
     color: #A45D5D;
     background-color: #F7F6F2;
 }
+
 /* ----- question part ------ */
+
 .questionContainer {
     margin: 3% 15%;
 }
@@ -82,7 +84,7 @@
     border-radius: 0.5rem;
     background-color: #EFEFEF;
     border-style: none;
-    padding: 0% 2%;
+    padding: 0 15px;
 }
 
 .questionInput:focus {
@@ -97,6 +99,7 @@
 .answerContainer {
     margin: 2% 15% 0%;
 }
+
 .answer {
     width: 80%;
     height: 80%;
@@ -104,21 +107,25 @@
     color: #00A19D;
     font-weight: bold;
 }
+
 .answerInput {
     width: 80%;
     height: 50px;
     border-radius: 1rem;
     background-color: #EFEFEF;
     border-style: none;
-    padding: 0% 2%;
+    padding: 0 15px;
     margin-left: 10px;
 }
+
 .answerInput:hover {
     outline: none;
     border: 2px solid #00A19D;
     color: #A45D5D;
     background-color: #F7F6F2;
 }
+
+
 .solveBtn {
     margin-left: 80%;
     width: 120px;
@@ -130,6 +137,7 @@
     font-family: 'Ubuntu', sans-serif;
     margin-bottom: 30px;
 }
+
 .solveBtn:hover {
     font-family: 'Ubuntu', sans-serif;
     background-color: #fff;
@@ -145,7 +153,7 @@
     height: 50px;
     border-radius: 1rem;
     border-style: none;
-    padding: 0% 2%;
+    padding: 0 15px;
     margin-left: 10px;
     font-weight: bold;
 }

@@ -7,7 +7,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    // console.log(req);
     const backendResponse = await backendAPI.get("/history/",{params: {...req.query}});
     res.status(201).json(backendResponse.data);
 

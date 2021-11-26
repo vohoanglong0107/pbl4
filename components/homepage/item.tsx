@@ -6,8 +6,8 @@ import 'antd/dist/antd.css';
 import styles from "../../styles/Home.module.css";
 import Category from "../dropdown/category";
 
-const Item = ({dt}) => {
-
+const Item = ({saved, dt}) => {
+    console.log("dt",dt);
     
     function setType(dt) {
         let type = ""
@@ -17,11 +17,16 @@ const Item = ({dt}) => {
         if(dt.id === 4) type = "Speaking"
         return type
     }
-
+    
     return (
         <div className={styles.history} >
             <p className={styles.type}>{setType(dt)}</p>
-            <p className={styles.content}>{dt.passage.substring(0, 84)}...<a className={styles.readmore}>Read more</a></p>
+            <p className={styles.content}>{dt.passage.substring(0, 84)}...<Link href={{
+                pathname: `/functions/reading`,
+                query: {
+                    ...dt                    
+                },
+            }} ><a className={styles.readmore}>Read more</a></Link></p>
         </div>
     );
 }
