@@ -7,7 +7,9 @@
 }
 
 /* login form */
-
+.body {
+    padding-top: 20px;
+}
 .formContainer {
     
     width: 25%;
@@ -163,6 +165,6 @@
 }
 .spinner {
     position: fixed;
-    bottom: 10px;
+    bottom: 20px;
     right: 50px;
 }

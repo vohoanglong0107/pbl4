@@ -17,6 +17,7 @@ const Reading: NextPage = () => {
   const query = router.query;
   console.log(query);
   const [ isLoading, setIsLoading ] = useState(false)
+  const [ isUploading, setIsUploading ] = useState(false)
   const [output, setOutput] = useState(""); 
   const [passage, setPassage] = useState("");
   const [question, setQuestion] = useState("");
@@ -26,14 +27,17 @@ const Reading: NextPage = () => {
     answerC: "",
     answerD: "",
   });
+
   const [image, setImage] = useState<File>();
   const { user, username } = useContext(UserContext);
   const handleAnswer = (trueAnswer: React.SetStateAction<string>): void => {
     setOutput(trueAnswer);
+    setIsLoading(false)
   };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setIsLoading(true)
     axios
       .post(
         "/api/qa",
@@ -51,19 +55,20 @@ const Reading: NextPage = () => {
       .then((response) =>
         handleAnswer(String.fromCharCode(response - 1 + "A".charCodeAt(0)))
       )
+      
       .catch((err) => {
         console.log(err);
         handleAnswer(String(err));
       });
-      setIsLoading(false)
   };
-
+ 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImage(e.target.files![0]);
   };
 
   const handleImageSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setIsUploading(true)
     if (image) {
       const formData = new FormData();
       formData.append("data", image, image.name);
@@ -74,20 +79,21 @@ const Reading: NextPage = () => {
         .catch((err) => {
           console.log(err);
           setPassage(String(err));
-        });
+        })
+        .finally(() => setIsUploading(false));
+        
     }
   };
-
+  
   useEffect(() => {
-    setPassage(query.passage)
-    setQuestion(query.question)
-    setAnswer({
-      answerA: query.answerA,
-      answerB: query.answerB,
-      answerC: query.answerC,
-      answerD: query.answerD
-    })
-    setIsLoading(true)
+      setPassage(query.passage)
+      setQuestion(query.question)
+      setAnswer({
+        answerA: query.answerA,
+        answerB: query.answerB,
+        answerC: query.answerC,
+        answerD: query.answerD
+      })
   },[])
   
   return (
@@ -97,15 +103,24 @@ const Reading: NextPage = () => {
         <div className={styles.passage}>
           <label className={styles.instruction}>Passage </label>
           <br />
-          <label className={styles.via}>Via picture </label>
-          <input
-            type="text"
-            autoComplete="off"
-            name="src"
-            onChange={(e) => e.target.value}
-            className={styles.imageSrc}
-          />
-          <button className={styles.uploadBtn}>Upload!</button>
+          <div className={styles.viaPic}>
+            <label className={styles.via}>Via picture </label>
+            <input
+              type="file"
+              name="image"
+              onChange={handleImageUpload}
+              className={styles.imageSrc}
+            />
+            <button className={styles.uploadBtn} onClick={handleImageSubmit}>
+              Upload
+            </button>
+            {!isUploading?"":(
+              <span className={styles.uploadSpinner}>
+                  <Spinner animation="grow" variant="warning" size="sm" />
+              </span>
+            )}
+          </div>
+          
           <br />
           <label className={styles.via}>Via text </label>
           <textarea
@@ -188,10 +203,10 @@ const Reading: NextPage = () => {
             </p>
           </div>
           <input type="submit" className={styles.solveBtn} value="Solve!" />
-          {isLoading?"":(
+          {!isLoading?"":(
             <span className={styles.spinner}>
-            <Spinner animation="border" variant="warning" />
-        </span>
+              <Spinner animation="grow" variant="warning" size="sm" />
+            </span>
           )}
         </div>
         </form>

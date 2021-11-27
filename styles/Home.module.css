@@ -122,6 +122,18 @@
 
 .spinner {
   position: fixed;
-  bottom: 10px;
+  bottom: 20px;
   right: 50px;
+}
+
+.loading {
+  margin-top: 20%;
+  text-align: center;
+  
+}
+
+.textLoading {
+  color: #FFC074;
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
 }

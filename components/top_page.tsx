@@ -19,7 +19,8 @@ const TopPage : NextPage = () => {
                 <div className={styles.left}>
                     <p className={styles.slogan}>Become a better version of you</p>
                     <p className={styles.description}>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-                    <button className={styles.button}><Link href={`/login`}><a onClick={() => setIsLoading(true)} className={styles.linkText}>Get Started!</a></Link></button>
+                    <button className={styles.button}><Link href={`/home`}><a onClick={() => setIsLoading(true)} className={styles.linkText}>Get Started!</a></Link></button>
+                    {/* <button className={styles.button}><Link href={`/login`}><a onClick={() => setIsLoading(true)} className={styles.linkText}>Get Started!</a></Link></button> */}
                     {isLoading?(
                         <div className={styles.spinner}>
                             <Spinner animation="border" variant="warning" />

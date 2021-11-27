@@ -16,10 +16,18 @@ import axios from "axios";
 import AppPagination from "@/components/pagination";
 import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useRouter}  from 'next/router'
+import Loading from "@/components/Loading";
 
 const HomePage : NextPage = () => {
 
     const { user, username } = useContext(UserContext)
+    if (!user)
+    {
+        let router = useRouter();
+        router.replace('/login');
+        return <Loading />
+    }
     const [ saved ] = useState(true)
     function len (arr) {
         let max = Math.floor(arr.length / 5) 

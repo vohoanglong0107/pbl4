@@ -4,7 +4,7 @@
     background-color: #FEFBF3;
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 /* ------ passage ------- */
 .passage {
@@ -20,11 +20,13 @@
 .via {
     color: #A45D5D;
     font-weight: bold;
-    margin-left: 20px;
+    /* margin-left: 20px; */
+}
+.viaPic {
 }
 .imageSrc {
-    margin: 2rem;
-    width: 60%;
+    margin: 10px;
+    width: 70%;
     border-radius: 0.5rem;
     background-color: #EFEFEF;
     padding: 0% 2%;
@@ -54,10 +56,15 @@
     font-weight: bold;
     border: 2px solid #00A19D;
 }
+.uploadSpinner {
+    margin-left: 5px;
+
+}
+
 .passageContent {
-    margin-left: 15%;
-    margin-top: -20px;
-    width: 60%;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 80%;
     height: 30%;
     border-radius: 0.5rem;
     background-color: #EFEFEF;
@@ -127,7 +134,8 @@
 
 
 .solveBtn {
-    margin-left: 80%;
+    position: relative;
+    left: 70%;
     width: 120px;
     height: 40px;
     border-radius: 2rem;
@@ -165,6 +173,6 @@
 
 .spinner {
     position: relative;
-    bottom: -5px;
-    right: -5px;
+    bottom: 0px;
+    left: 71%;
 }
