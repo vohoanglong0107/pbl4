@@ -22,18 +22,7 @@ import Loading from "@/components/Loading";
 const HomePage : NextPage = () => {
 
     const { user, username } = useContext(UserContext)
-    if (!user)
-    {
-        let router = useRouter();
-        router.replace('/login');
-        return <Loading />
-    }
-    const [ saved ] = useState(true)
-    function len (arr) {
-        let max = Math.floor(arr.length / 5) 
-        if(arr.length % 5 === 0) return max
-        return max + 1
-    }
+    let router = useRouter();
 
     const [ isLoading, setIsLoading ] = useState(false)
     const [ key, setKey ] = useState(null);
@@ -43,6 +32,41 @@ const HomePage : NextPage = () => {
     const [ currentPage, setCurrentPage ] = useState(1)
     const [ itemPerPage, setItemPerPage ] = useState(5)
     const [ runTime, setRunTime] = useState(0)
+    useEffect(() => {
+        if (!user)
+        {
+            router.replace('/login');
+        }
+    }, [user]);
+
+    useEffect(()=>{
+        async function getHistory() {
+            console.log("function is called")
+            const histories = await axios.get('/api/history', {params: {user_uid: user!.uid}});
+            const dt: any = histories.data
+            const datas =[]
+            if(runTime < 2) {
+                dt.forEach((item) => {
+                    item.cat_id = 1;
+                    datas.push(item)
+                })
+                setHistory(datas)
+                let tmp = history.slice(indexOfFirstItem, indexOfLastItem)
+                setData(tmp)
+                setTotalPage(len(history))
+                setRunTime(runTime + 1)
+                setIsLoading(true)
+            }
+        }
+        
+        getHistory();
+    }, [runTime]);
+
+    function len (arr) {
+        let max = Math.floor(arr.length / 5) 
+        if(arr.length % 5 === 0) return max
+        return max + 1
+    }
 
     const handleChangePage = async (curPageNumber) => {
         setCurrentPage(curPageNumber)
@@ -65,30 +89,9 @@ const HomePage : NextPage = () => {
             setData(filteredData)
         }
     }
-    
-    useEffect(()=>{
-        async function getHistory() {
-            console.log("function is called")
-            const histories = await axios.get('/api/history', {params: {user_uid: user!.uid}});
-            const dt = histories.data
-            const datas =[]
-            if(runTime < 2) {
-                dt.forEach((item) => {
-                    item.cat_id = 1;
-                    datas.push(item)
-                })
-                setHistory(datas)
-                let tmp = history.slice(indexOfFirstItem, indexOfLastItem)
-                setData(tmp)
-                setTotalPage(len(history))
-                setRunTime(runTime + 1)
-                setIsLoading(true)
-            }
-        }
-        
-        getHistory();
-    }, [runTime]); 
 
+    if (!user)
+        return <Loading />;
 
     return (
         <div className={styles.homepageContainer}>
@@ -98,7 +101,7 @@ const HomePage : NextPage = () => {
                 <>
                     <button className={styles.categoryButton} onClick={() => setData(history.slice(indexOfFirstItem, indexOfLastItem))}><Category filter={filter} setKey={setKey} keys={key} /></button>
                     <ul className={styles.historyContainer}>
-                        {data.map((item: any) => <li><Item isLoading={isLoading} setIsLoading={setIsLoading} saved={saved} dt={item}/></li>)}
+                        {data.map((item: any) => <li><Item isLoading={isLoading} setIsLoading={setIsLoading} dt={item}/></li>)}
                     </ul>
                         
                     <div className={styles.pageDiv}>

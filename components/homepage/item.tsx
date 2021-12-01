@@ -1,10 +1,6 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import 'antd/dist/antd.css';
 import styles from "../../styles/Home.module.css";
-import Category from "../dropdown/category";
 
 const Item = ({isLoading, setIsLoading, dt}) => {
     

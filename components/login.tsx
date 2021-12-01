@@ -1,15 +1,10 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import styles from "../styles/login.module.css"
 import { SignInButton } from "../pages/login";
 import TopNavbar from "./navbar/toppage_navbar";
 import { Spinner } from "react-bootstrap";
 
-const Login : NextPage = ({isLoading, setIsLoading}) => {
+const Login = ({isLoading, setIsLoading}) => {
 
     const [input, setInput] = useState({
         email: "",
@@ -52,7 +47,6 @@ const Login : NextPage = ({isLoading, setIsLoading}) => {
                 ):""}
             </div>
         </div>
-                
     );
 }
 

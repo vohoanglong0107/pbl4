@@ -5,17 +5,12 @@ import axios from "axios";
 import NavigationBar from "../../components/navbar/navbar";
 import styles from "../../styles/funcs/reading.module.css";
 import FormData from "form-data";
-import { styled } from '@mui/material/styles';
 import { UserContext } from "@/lib/context";
-import { Grid } from "@mui/material";
-import { Paper } from "@mui/material";
 import { Spinner } from "react-bootstrap";
-
 
 const Reading: NextPage = () => {
   const router = useRouter();
   const query = router.query;
-  console.log(query);
   const [ isLoading, setIsLoading ] = useState(false)
   const [ isUploading, setIsUploading ] = useState(false)
   const [output, setOutput] = useState(""); 
@@ -84,15 +79,15 @@ const Reading: NextPage = () => {
         
     }
   };
-  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-      setPassage(query.passage)
-      setQuestion(query.question)
+      setPassage(query.passage as string)
+      setQuestion(query.question as string)
       setAnswer({
-        answerA: query.answerA,
-        answerB: query.answerB,
-        answerC: query.answerC,
-        answerD: query.answerD
+        answerA: query.answerA as string,
+        answerB: query.answerB as string,
+        answerC: query.answerC as string,
+        answerD: query.answerD as string
       })
   },[])
   
