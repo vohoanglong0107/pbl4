@@ -2,14 +2,14 @@ import { useState, useContext } from "react";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { signInWithPopup, signInAnonymously, signOut } from "@firebase/auth";
 import googleIcon from "@/public/google.png";
 import { auth, googleProvider } from "@/lib/firebase";
 import { UserContext } from "@/lib/context";
 import Login from "../components/login";
-import styles from "../styles/login.module.css";
 import { UsernameForm } from "../components/account/addUsername";
-import { useRouter } from "next/router";
+import styles from "../styles/login.module.css";
 
 const LoginForm: NextPage = () => {
   const { user, username } = useContext(UserContext);

@@ -1,13 +1,11 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Spinner } from "react-bootstrap";
 import "antd/dist/antd.css";
-import {  Row, Col  } from "antd";
 import TopNavbar from "./navbar/toppage_navbar"
 import styles from "../styles/toppage.module.css";
-import { Spinner } from "react-bootstrap";
 
 const TopPage : NextPage = () => {
 

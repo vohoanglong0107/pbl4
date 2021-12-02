@@ -1,16 +1,13 @@
-import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import 'antd/dist/antd.css';
-import React, { useState, useContext } from 'react';
-import styles from "../../styles/navbar.module.css";
-import { Menu, Dropdown, Button } from "antd";
+import React, { useContext } from 'react';
+import { Menu, Dropdown } from "antd";
 import IconButton from '@mui/material/IconButton';
 import { SignOutButton } from "@/pages/login";
 import { UserContext } from "@/lib/context";
+import styles from "../../styles/navbar.module.css";
 
-const ProfileDropdown : NextPage = () => {
+const ProfileDropdown = () => {
   const { username } = useContext(UserContext)
     const menu = (
         <Menu className={styles.dropdown}>

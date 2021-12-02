@@ -3,10 +3,10 @@ import { useRouter } from "next/router"
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import NavigationBar from "../../components/navbar/navbar";
-import styles from "../../styles/funcs/reading.module.css";
 import FormData from "form-data";
 import { UserContext } from "@/lib/context";
 import { Spinner } from "react-bootstrap";
+import styles from "../../styles/funcs/reading.module.css";
 
 const Reading: NextPage = () => {
   const router = useRouter();

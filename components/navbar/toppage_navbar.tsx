@@ -1,16 +1,10 @@
-import type { NextPage } from "next";
-import React, { useState } from "react";
-import Head from "next/head";
+import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import styles from "../../styles/navbar.module.css";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+import styles from "../../styles/navbar.module.css";
 
 const TopNavbar = () => {
   return (

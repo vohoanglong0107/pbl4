@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "../styles/login.module.css"
-import { SignInButton } from "../pages/login";
-import TopNavbar from "./navbar/toppage_navbar";
 import { Spinner } from "react-bootstrap";
+import TopNavbar from "./navbar/toppage_navbar";
+import { SignInButton } from "../pages/login";
+import styles from "../styles/login.module.css"
 
 const Login = ({isLoading, setIsLoading}) => {
 

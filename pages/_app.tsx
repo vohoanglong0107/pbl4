@@ -1,8 +1,7 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { getAuth } from "firebase/auth";
 import { UserContext } from "@/lib/context";
 import { useUserData } from "@/lib/hooks";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const userData = useUserData();

@@ -1,11 +1,11 @@
-import { NextPage } from "next";
+
 import debounce from "lodash.debounce";
 import { useEffect, useState, useMemo, useContext } from "react";
 import { writeBatch, doc, getDoc } from "firebase/firestore";
 import { UserContext } from "@/lib/context";
 import { firestore } from "@/lib/firebase";
-import styles from "../../styles/username.module.css"
 import TopNavbar from "../navbar/toppage_navbar";
+import styles from "../../styles/username.module.css"
 
 
 export const UsernameForm = () => {

@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from "../styles/Home.module.css";
 import TopPage from "../components/top_page";
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from "../styles/Home.module.css";
 
 
 const Home: NextPage = () => {

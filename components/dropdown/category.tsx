@@ -1,16 +1,8 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-// import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import styles from "../../styles/Home.module.css";
-// import { Menu, Dropdown } from "antd";
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import styles from "../../styles/Home.module.css";
 
 const Category = props => {
     const [ category, setCategory ] = useState('')

@@ -1,23 +1,18 @@
 /* eslint-disable react/jsx-key */
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import 'antd/dist/antd.css';
 import React, { useState, useContext, useEffect } from "react";
 import NavigationBar from "../components/navbar/navbar";
-import styles from "../styles/Home.module.css";
 import Category from "../components/dropdown/category";
 import Item from "../components/homepage/item";
-import { SignOutButton } from "./login";
 import { UserContext } from "@/lib/context";
-import { Pagination } from 'antd';
 import axios from "axios";
 import AppPagination from "@/components/pagination";
 import { Spinner } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {useRouter}  from 'next/router'
 import Loading from "@/components/Loading";
+import 'antd/dist/antd.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from "../styles/Home.module.css";
 
 const HomePage : NextPage = () => {
 

@@ -1,11 +1,6 @@
-import type { NextPage } from "next";
 import React, { useState } from "react";
-import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { SignOutButton } from "../../pages/login";
-import styles from "../../styles/navbar.module.css";
-import Reading from "../../pages/functions/reading";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,14 +8,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
-import ProfileDropdown from "../dropdown/profile";
 import { Spinner } from "react-bootstrap";
+import { SignOutButton } from "../../pages/login";
+import styles from "../../styles/navbar.module.css";
 
 const NavigationBar = ({username}) => {
 
