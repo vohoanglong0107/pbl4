@@ -1,7 +1,7 @@
 import { initializeApp, getApps } from "firebase/app";
 import "firebase/auth";
-import { Timestamp, getFirestore } from "firebase/firestore";
-import { getStorage, TaskEvent } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
