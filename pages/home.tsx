@@ -10,8 +10,6 @@ import AppPagination from "@/components/pagination";
 import { Spinner } from "react-bootstrap";
 import {useRouter}  from 'next/router'
 import Loading from "@/components/Loading";
-import 'antd/dist/antd.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "../styles/Home.module.css";
 
 const HomePage : NextPage = () => {

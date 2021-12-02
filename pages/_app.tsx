@@ -3,6 +3,8 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { UserContext } from "@/lib/context";
 import { useUserData } from "@/lib/hooks";
 import createEmotionCache from "@/lib/createEmotionCache";
+import 'antd/dist/antd.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/globals.css";
 
 // Client-side cache, shared for the whole session of the user in the browser.

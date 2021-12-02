@@ -1,5 +1,4 @@
 import Image from "next/image";
-import 'antd/dist/antd.css';
 import React, { useContext } from 'react';
 import { Menu, Dropdown } from "antd";
 import IconButton from '@mui/material/IconButton';

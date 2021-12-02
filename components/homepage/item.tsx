@@ -1,5 +1,4 @@
 import Link from "next/link";
-import 'antd/dist/antd.css';
 import styles from "../../styles/Home.module.css";
 
 const Item = ({isLoading, setIsLoading, dt}) => {
