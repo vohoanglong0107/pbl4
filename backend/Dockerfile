@@ -14,7 +14,10 @@ FROM python:${VARIANT}-slim as production
 COPY --from=builder /home/venv /home/venv
 ENV PATH="/home/venv/bin:$PATH"
 
-COPY . .
+COPY ./app ./app
+COPY ./alembic ./alembic
+COPY ./alembic.ini ./alembic.ini
+COPY ./entrypoint.sh ./entrypoint.sh
 ENV PATH=/root/.local/bin:$PATH
 
 EXPOSE 8000

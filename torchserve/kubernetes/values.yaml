@@ -1,19 +1,39 @@
 # Default values for torchserve helm chart.
 
-# custom image as current torchserve image not support python 3.8
-torchserve_image: mamlong34/torchserve:python-3.8
 
-namespace: torchserve
+namespace: pbl4
 
 torchserve:
+  # custom image as current torchserve image not support python 3.8
+  image: mamlong34/torchserve:python-3.8
   management_port: 8081
   inference_port: 8080
   metrics_port: 8082
   pvd_mount: /home/model-server/shared/
   n_gpu: 0
   n_cpu: 1
-  memory_limit: 4Gi
+  memory_limit: 6Gi
   memory_request: 2Gi
+  deployment:
+    replicas: 3
 
-deployment:
-  replicas: 3
+postgres:
+  image: postgres:11.5
+  storage: 1Gi
+  port: 5432
+  deployment:
+    replicas: 1
+
+backend:
+  deployment:
+    replicas: 3
+  image: mamlong34/pbl4-backend:torchserve
+  internalPort: 8000
+  externalPort: 8000
+
+frontend:
+  deployment:
+    replicas: 3
+  image: mamlong34/pbl4-frontend:torchserve
+  internalPort: 3000
+  externalPort: 80

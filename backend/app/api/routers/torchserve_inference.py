@@ -12,7 +12,9 @@ router = APIRouter()
 
 
 @router.post("/qa/")
-async def inference_qa(user_uid: str, content: schemas.ContentCreate, db: Session = Depends(deps.get_db)) -> Any:
+async def inference_qa(
+    user_uid: str, content: schemas.ContentCreate, db: Session = Depends(deps.get_db)
+) -> Any:
     history = schemas.HistoryCreate(user_id=user_uid)
     content = crud.content.create(db=db, obj_in=content)
     history = crud.history.create_with_content(
