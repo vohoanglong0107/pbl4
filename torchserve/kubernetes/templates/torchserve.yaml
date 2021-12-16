@@ -3,6 +3,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: torchserve
+  namespace: {{ .Values.namespace }}
   labels:
     app: torchserve
 spec:
@@ -16,7 +17,7 @@ spec:
   - name: metrics
     port: {{ .Values.torchserve.metrics_port }}
     targetPort: ts-metrics
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: torchserve
 ---
@@ -24,10 +25,11 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: torchserve
+  namespace: {{ .Values.namespace }}
   labels:
     app: torchserve
 spec:
-  replicas: {{ .Values.deployment.replicas }}
+  replicas: {{ .Values.torchserve.deployment.replicas }}
   selector:
     matchLabels:
       app: torchserve
@@ -42,7 +44,7 @@ spec:
           claimName: cephfs-pvc
       containers:
       - name: torchserve
-        image: {{ .Values.torchserve_image }}
+        image: {{ .Values.torchserve.image }}
         args: ["torchserve", "--start",  "--model-store", "/home/model-server/shared/model-store/", "--ts-config", "/home/model-server/shared/config/config.properties"]
         ports:
         - name: ts

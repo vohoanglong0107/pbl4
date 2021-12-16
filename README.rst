@@ -45,26 +45,29 @@ Setup torchserve::
     # archive model mar, result will be saved in the model-store:
     scripts/docker-torch-model-archive.sh
 
+    # create new kubernetes namespace
+    kubectl create ns pbl4
+
     # create persistent volume claim for model storage
     kubectl create -f kubernetes/pvc.yaml
 
     # uploading model mar
     kubectl create -f kubernetes/model-store-pod.yaml
-    kubectl exec --tty pod/model-store-pod -- mkdir /pv/model-store/
-    kubectl cp model-store/ocr.mar model-store-pod:/pv/model-store/ocr.mar
-    kubectl cp model-store/qa.mar model-store-pod:/pv/model-store/qa.mar
-    kubectl exec --tty pod/model-store-pod -- mkdir /pv/config
-    kubectl cp config.properties model-store-pod:/pv/config/config.properties
+    kubectl -n pbl4 exec --tty pod/model-store-pod -- mkdir /pv/model-store/
+    kubectl -n pbl4 cp model-store/ocr.mar model-store-pod:/pv/model-store/ocr.mar
+    kubectl -n pbl4 cp model-store/qa.mar model-store-pod:/pv/model-store/qa.mar
+    kubectl -n pbl4 exec --tty pod/model-store-pod -- mkdir /pv/config
+    kubectl -n pbl4 cp config.properties model-store-pod:/pv/config/config.properties
 
     # inspect volume mount
-    kubectl exec --tty pod/model-store-pod -- ls -lR /pv/
+    kubectl -n pbl4 exec --tty pod/model-store-pod -- ls -lR /pv/
 
     # as model had been uploaded to pvc, delete the pod
-    kubectl delete pod/model-store-pod
+    kubectl -n pbl4 delete pod/model-store-pod
 
     # (Optionals) assure the pvc is working 
     kubectl create -f kubernetes/model-inspect-pod.yaml # create inspect pod
-    kubectl exec --tty pod/model-inspect-pod -- ls -lR /pv/shared
+    kubectl -n pbl4 exec --tty pod/model-inspect-pod -- ls -lR /pv/shared
 
     # change value in config.properties and values.yaml to match your usage
     # Install torchserve
