@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat&family=Ubuntu:wght@500&display=swap');
+
+.container {
+    font-family: 'Montserrat', sans-serif;
+}
+.inputContainer {
+    margin: 150px auto 5%;
+    width: 80%;
+}
+
+.heading {
+    text-align: center;
+    font-weight: bold;
+    color:#00A19D;
+}
+
+.inputForm {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.input {
+    text-align: center;
+    border-style: none;
+    border-bottom: 2px solid #A45D5D;
+}
+
+.input:focus {
+    border-style: none;
+    outline: none;
+}
+
+.button {
+    border-radius: 0.5rem;
+    width: 20%;
+    min-width: 200px;
+    background-color: #A45D5D;
+    border-style: none;
+    color: white;
+    padding: 10px;
+}

@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat&family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+.container {
+    min-height: 100vh;
+    margin-top: 0;
+    background-color: #FEF5ED;
+}
+
+/* login form */
+.body {
+    padding-top: 20px;
+}
+.formContainer {
+    
+    width: 25%;
+    min-width: 250px;
+    margin: 20px auto;
+}
+
+.title {
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Luckiest Guy', cursive;
+    font-weight: 900;
+    color: #A45D5D;
+    width: 60%;
+    letter-spacing: 1mm;
+    line-height: 1.5cm;
+    min-width: 300px;
+}
+.titleContainer {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+.loginWith {
+    margin-top: 30px;
+    padding: 0 auto;
+    text-align: center;
+    margin-bottom: -20px;
+}
+
+.ggButton {
+    width: 100%;
+    margin-bottom: 3%;
+    padding: 2%;
+    background-color: #FAFAFA;
+    border: 2px solid #00A19D;
+    color: #000;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    border-radius: 1rem;
+    /* border-style: none; */
+}
+
+.anonyButton {
+    width: 100%;
+    margin-bottom: 3%;
+    padding: 4%;
+    background-color: #00A19D;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    border-radius: 1rem;
+    border-style: none;
+}
+.anonyButton:hover {
+    opacity: 20;
+}
+
+
+.or {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: #A45D5D;
+}
+
+.inputField {
+    text-align: left; 
+    margin-top: -40px;
+}
+.labels {
+    text-align: left;
+}
+.labelText {
+    position:'relative';
+    left: -10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    color: #105652;
+    text-align: left;
+
+}
+
+.inputText {
+    width: 100%;
+    padding: 3%;
+    background-color: #FAFAFA;
+    border: 2px solid #00A19D;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border-radius: 1rem;
+
+}
+.inputText:focus {
+    outline: none;
+    border: 2px solid #00A19D;
+    color: #A45D5D;
+    background-color: #F7F6F2;
+}
+
+.fpContainer {
+    min-width: 250px;
+    /* width: 40%; */
+    text-align: right;
+    margin: 0px auto;
+}
+
+.forgotPassword {
+    color: #A45D5D;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+.loginButton {
+    width: 100%;
+    margin: 5% 0%;
+    padding: 3%;
+    background-color: #A45D5D;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    border-radius: 1rem;
+    border-style: none;
+}
+.loginButton:hover {
+    background-color: #fff;
+    color: #A45D5D;
+    border: 2px solid #A45D5D;
+}
+
+.signupContainer {
+    min-width: 250px;
+    width: 40%;
+    text-align: center;
+    margin: -10px auto;
+    height: 200px;
+}
+.signup {
+    text-align: center;
+    color: #A45D5D;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+}
+.signup:hover {
+    font-weight: bold;
+    color: red;
+}
+.spinner {
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+}
