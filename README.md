@@ -1,13 +1,22 @@
-Prerequisites:
-============
-1. A kubernetes cluster with at least 3 or more running kubernetes nodes. (not sure 2 is enough)
+# English problem solver <!-- omit in toc -->
+- [Kubernetes cluter overvi](#kubernetes-cluter-overvi)
+- [Setup](#setup)
+  - [Install rook/ceph on cluster](#install-rookceph-on-cluster)
+  - [Setup torchserve model with backend and frontend](#setup-torchserve-model-with-backend-and-frontend)
+
+## Kubernetes cluter overvi 
+
+![](image/kubernetes.drawio.png)
+
+## Setup
+1. A kubernetes cluster with at least 3 or more running kubernetes nodes. 
 2. At least 3 volume, attach to each nodes, unformatted.
 
 
-Setup cluster::
+### Install rook/ceph on cluster
 
     #Install rook-ceph
-    cd torchserve/kubernetes
+    cd kubernetes
 
     # install lvm2 on each node
     kubectl apply -f setupnodes.yaml
@@ -37,13 +46,13 @@ Setup cluster::
     ceph status
 
 
-Setup torchserve::
+### Setup torchserve model with backend and frontend
 
-    # back to torchserve dir
+    # back to root dir
     cd ..
 
     # archive model mar, result will be saved in the model-store:
-    scripts/docker-torch-model-archive.sh
+    torchserve/scripts/docker-torch-model-archive.sh
 
     # create new kubernetes namespace
     kubectl create ns pbl4
@@ -54,10 +63,10 @@ Setup torchserve::
     # uploading model mar
     kubectl create -f kubernetes/model-store-pod.yaml
     kubectl -n pbl4 exec --tty pod/model-store-pod -- mkdir /pv/model-store/
-    kubectl -n pbl4 cp model-store/ocr.mar model-store-pod:/pv/model-store/ocr.mar
-    kubectl -n pbl4 cp model-store/qa.mar model-store-pod:/pv/model-store/qa.mar
+    kubectl -n pbl4 cp torchserve/model-store/ocr.mar model-store-pod:/pv/model-store/ocr.mar
+    kubectl -n pbl4 cp torchserve/model-store/qa.mar model-store-pod:/pv/model-store/qa.mar
     kubectl -n pbl4 exec --tty pod/model-store-pod -- mkdir /pv/config
-    kubectl -n pbl4 cp config.properties model-store-pod:/pv/config/config.properties
+    kubectl -n pbl4 cp torchserve/config.properties model-store-pod:/pv/config/config.properties
 
     # inspect volume mount
     kubectl -n pbl4 exec --tty pod/model-store-pod -- ls -lR /pv/
@@ -70,7 +79,7 @@ Setup torchserve::
     kubectl -n pbl4 exec --tty pod/model-inspect-pod -- ls -lR /pv/shared
 
     # change value in config.properties and values.yaml to match your usage
-    # Install torchserve
-    helm install ts kubernetes
+    # Install full project as helm
+    helm install pbl4 kubernetes
 
 
