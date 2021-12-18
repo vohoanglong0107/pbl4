@@ -15,7 +15,7 @@ if [ -d "model-store" ]; then
     exit 1
 fi
 
-mkdir model-store
+mkdir torchserve/model-store
 chmod 777 model-store
 
 docker run \
@@ -25,9 +25,9 @@ docker run \
     -p 8080:8080 \
     -p 8081:8081 \
     --name mar \
-    -v $(pwd)/model-store:/home/model-server/model-store \
-    -v $(pwd)/qa:/home/model-server/torchserve/qa \
-    -v $(pwd)/ocr:/home/model-server/torchserve/ocr \
+    -v $(pwd)/torchserve/model-store:/home/model-server/model-store \
+    -v $(pwd)/torchserve/qa:/home/model-server/torchserve/qa \
+    -v $(pwd)/torchserve/ocr:/home/model-server/torchserve/ocr \
     mamlong34/torchserve:python-3.8
 
 docker exec -it mar /bin/bash -c \
